@@ -6,8 +6,8 @@ import React from 'react';
 import {  } from 'reactstrap';
 
 // Components
-import FoodAppIndex from './Components/App/FoodAppIndex';
-import AuthIndex from './Components/Auth/AuthIndex';
+import FoodAppIndex from './components/app/FoodAppIndex';
+import AuthIndex from './components/auth/AuthIndex';
 
 function App() {
   return (

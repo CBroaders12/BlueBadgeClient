@@ -18,7 +18,7 @@ const LoginComponent = (props) => {
     event.preventDefault();
     
     if(username && password) {
-      fetch('', {
+      fetch('http://localhost:5200/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'},
@@ -29,7 +29,8 @@ const LoginComponent = (props) => {
 
       }).then(response => response.json())
       .then((body) => {
-        props.authenticateUser(body.token);
+        // props.authenticateUser(body.token);
+        console.log(body)
       })
       .catch((error) => console.log(error));
     }

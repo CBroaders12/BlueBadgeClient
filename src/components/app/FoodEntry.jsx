@@ -47,6 +47,7 @@ const FoodEntryComponent = (props) => {
         <Label htmlFor="meal">Enter a meal ID:</Label>
         <Input type="text" name="date" id="meal" onChange={(e) => setMeal(e.target.value)} />
       </FormGroup>
+      <Button>Update</Button>
     </Form>
   );
 };

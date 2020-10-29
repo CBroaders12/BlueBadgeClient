@@ -15,7 +15,7 @@ const FoodEntryComponent = (props) => {
     let apiId = '&app_id=bbd2cb26';
     let apiKey = '&app_key=a5f3a4c05e09c2955943a1cd6bb8396b';
     
-    fetch(`${baseUrl}${ingredient}${apiId}${apiKey}`)
+    fetch(`${baseUrl}${name}${apiId}${apiKey}`)
     .then(response => response.json())
     .then(data => 
       setCalories(data.hints[0].food.nutrients.ENERC_KCAL) 

@@ -19,7 +19,7 @@ const RegisterComponent = (props) => {
     if(username && email && password) {
       if(password === passwordConfirm) {
         
-        fetch('', {
+        fetch('http://localhost:5200/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

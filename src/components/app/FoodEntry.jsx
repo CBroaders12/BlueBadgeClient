@@ -10,24 +10,43 @@ const FoodEntryComponent = (props) => {
   const [meal, setMeal] = useState('');
 
   
-  const handleSubmit =() => {
-    let baseUrl = 'https://api.edamam.com/api/food-database/v2/parser';
+  const postFood = (data) => {
+    
+    fetch('http://localhost:5200/log', {
+      method: 'POST',
+      body: JSON.stringify({log: data }),
+      headers: new Headers ({
+        'Content-Type': 'application/json',
+        'Authorization': props.token
+      })
+    })
+  }
+
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let baseUrl = 'https://api.edamam.com/api/food-database/v2/parser?ingr=';
     let apiId = '&app_id=bbd2cb26';
     let apiKey = '&app_key=a5f3a4c05e09c2955943a1cd6bb8396b';
     
     fetch(`${baseUrl}${name}${apiId}${apiKey}`)
     .then(response => response.json())
-    .then(data => 
-      setCalories(data.hints[0].food.nutrients.ENERC_KCAL) 
+    .then(data => {
+      setCalories(data.hints[0].food.nutrients.ENERC_KCAL); 
+      let postData = {name: name, description: description, servings: servings, calories: data.hints[0].food.nutrients.ENERC_KCAL, date_eaten: date_eaten}
+      postFood(postData);
       //setCarbs(data.hints[0].food.nutrients.CHOCDF) 
       //setFat(data.hints[0].food.nutrients.FAT) 
       //setProtein(data.hints[0].food.nutrients.PROCNT) 
-      );
+
+    });
   }
+
+  
 
   return(
     <Form onSubmit={(e) => handleSubmit(e)}>
-      <FormGroup>
+      <FormGroup className='Form'>
         <Label htmlFor="name">Enter an ingredient:</Label>
         <Input type="text" name="text" id="name" onChange={(e) => setName(e.target.value)} />
       </FormGroup>
@@ -36,7 +55,7 @@ const FoodEntryComponent = (props) => {
         <Input type="text" name="text" id="description" onChange={(e) => setDescription(e.target.value)} />
       </FormGroup>
       <FormGroup>
-        <Label htmlFor="servings">Enter servings:</Label>
+        <Label htmlFor="servings">Enter Servings:</Label>
         <Input type="integer" name="text" id="servings" onChange={(e) => setServings(e.target.value)} />
       </FormGroup>
       <FormGroup>

@@ -43,7 +43,7 @@ const RegisterComponent = (props) => {
   };
 
   return(
-    <Form className='authForm' id='registerForm' onSubmit={UserRegistration}>
+    <Form className='Form' id='registerForm' onSubmit={UserRegistration}>
       <h4>Registration</h4>
       <FormGroup>
         <Label htmlFor='registerUserName'>Username:</Label>

@@ -3,11 +3,72 @@ import {FormGroup, Button, Form, Label, Input, Modal, ModalHeader, ModalBody} fr
 
 const FoodUpdateComponent = (props) => {
 
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [servings, setServings] = useState('');
+  const [calories, setCalories] = useState('');
+  const [date_eaten, setDate_eaten] = useState('');
+  const [meal, setMeal] = useState('');
+
+  const postFood = (data) => {
+    
+    fetch('http://localhost:5200/log', {
+      method: 'PUT',
+      body: JSON.stringify({log: data }),
+      headers: new Headers ({
+        'Content-Type': 'application/json',
+        'Authorization': props.token
+      })
+    })
+  }
+
+  const handleSubmit =() => {
+    let baseUrl = 'https://api.edamam.com/api/food-database/v2/parser?ingr';
+    let apiId = '&app_id=bbd2cb26';
+    let apiKey = '&app_key=a5f3a4c05e09c2955943a1cd6bb8396b';
+    
+    fetch(`${baseUrl}${name}${apiId}${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
+      
+      let postData = {name: name, description: description, servings: servings, calories: data.hints[0].food.nutrients.ENERC_KCAL, date_eaten: date_eaten}
+      postFood(postData);
+      //setCarbs(data.hints[0].food.nutrients.CHOCDF) 
+      //setFat(data.hints[0].food.nutrients.FAT) 
+      //setProtein(data.hints[0].food.nutrients.PROCNT) 
+    })
+  };
+    
+
   return(
-    <div>
-      Update Food Here
-    </div>
+    <>
+    <h2>Update Food</h2>
+    <hr/>
+    <Form onSubmit={(e) => handleSubmit(e)}>
+      <FormGroup>
+        <Label htmlFor="name">Enter an ingredient:</Label>
+        <Input type="text" name="text" id="name" onChange={(e) => setName(e.target.value)} />
+      </FormGroup>
+      <FormGroup>
+        <Label htmlFor="description">Enter a description:</Label>
+        <Input type="text" name="text" id="description" onChange={(e) => setDescription(e.target.value)} />
+      </FormGroup>
+      <FormGroup>
+        <Label htmlFor="servings">Enter servings:</Label>
+        <Input type="integer" name="text" id="servings" onChange={(e) => setServings(e.target.value)} />
+      </FormGroup>
+      <FormGroup>
+        <Label htmlFor="date_eaten">Enter a date eaten (defaults to today):</Label>
+        <Input type="date" name="date" id="date_eaten" pattern="[0-9]{8}" onChange={(e) => setDate_eaten(e.target.value)} />
+      </FormGroup>
+      <FormGroup>
+        <Label htmlFor="meal">Enter a meal ID:</Label>
+        <Input type="text" name="date" id="meal" onChange={(e) => setMeal(e.target.value)} />
+      </FormGroup>
+    </Form>
+    </>
   );
 };
 
-export default FoodUpdateComponent;
+
+ export default FoodUpdateComponent;

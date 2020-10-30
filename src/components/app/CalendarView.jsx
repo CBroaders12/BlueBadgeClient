@@ -6,16 +6,16 @@ import FoodUpdateComponent from './FoodUpdate';
 const CalendarViewComponent = (props) => {
   const [logs, setLogs] = useState([]);
 
-  //fetch('http://localhost:9999/food', {
-    headers: {
-      "Authorization": props.token
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      setLogs(data);
-    })
-    .catch(error => console.log(error));
+  // //fetch('http://localhost:9999/food', {
+  //   headers: {
+  //     "Authorization": props.token
+  //   }
+  // })
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     setLogs(data);
+  //   })
+  //   .catch(error => console.log(error));
 
   return(
     <div id="calendarView">

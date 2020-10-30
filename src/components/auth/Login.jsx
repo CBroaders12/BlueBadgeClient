@@ -29,7 +29,7 @@ const LoginComponent = (props) => {
 
       }).then(response => response.json())
       .then((body) => {
-        // props.authenticateUser(body.token);
+       props.setToken(body.token);
         console.log(body)
       })
       .catch((error) => console.log(error));
@@ -37,7 +37,7 @@ const LoginComponent = (props) => {
   };
 
   return(
-    <Form id='loginForm' className='authForm' onSubmit={LoginSubmit}>
+    <Form id='loginForm' className='Form' onSubmit={LoginSubmit}>
       <h4>Login</h4>
       <FormGroup>
         <Label htmlFor='username'>Username:</Label>

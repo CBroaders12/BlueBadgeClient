@@ -7,14 +7,14 @@ const FoodEntryComponent = (props) => {
   const [servings, setServings] = useState('');
   const [calories, setCalories] = useState('');
   const [date_eaten, setDate_eaten] = useState('');
-  const [meal, setMeal] = useState('');
+  const [meal, setMeal] = useState('test');
 
   
   const postFood = (data) => {
     
     fetch('https://wd64-nutrition-app.herokuapp.com/food', {
       method: 'POST',
-      body: JSON.stringify({log: data }),
+      body: JSON.stringify(data),
       headers: new Headers ({
         'Content-Type': 'application/json',
         'Authorization': props.token
@@ -33,7 +33,7 @@ const FoodEntryComponent = (props) => {
     .then(response => response.json())
     .then(data => {
       setCalories(data.hints[0].food.nutrients.ENERC_KCAL); 
-      let postData = {name: name, description: description, servings: servings, calories: data.hints[0].food.nutrients.ENERC_KCAL, date_eaten: date_eaten}
+      let postData = {name: name, description: description, servings: servings, calories: data.hints[0].food.nutrients.ENERC_KCAL, date_eaten: date_eaten, meal: meal}
       postFood(postData);
       //setCarbs(data.hints[0].food.nutrients.CHOCDF) 
       //setFat(data.hints[0].food.nutrients.FAT) 

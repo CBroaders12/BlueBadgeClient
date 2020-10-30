@@ -11,10 +11,10 @@ const FoodAppIndex = (props) => {
   return(
     <div>
       <h2>Application Main Page</h2>
-      <FoodEntryComponent />
-      <FoodTableComponent />
-      <FoodUpdateComponent />
-      <CalendarViewComponent />
+      <FoodEntryComponent token={props.token}/>
+      <FoodTableComponent token={props.token}/>
+      <FoodUpdateComponent token={props.token}/>
+      <CalendarViewComponent token={props.token}/>
     </div>
   );
 };

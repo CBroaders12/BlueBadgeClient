@@ -5,6 +5,7 @@ const LoginComponent = (props) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
 
   const userNameChange = (event) => {
     setUsername(event.target.value)
@@ -29,7 +30,7 @@ const LoginComponent = (props) => {
 
       }).then(response => response.json())
       .then((body) => {
-       props.setToken(body.token);
+      props.authenticateUser(body.token);
         console.log(body)
       })
       .catch((error) => console.log(error));

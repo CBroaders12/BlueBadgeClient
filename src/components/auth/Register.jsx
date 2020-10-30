@@ -19,11 +19,7 @@ const RegisterComponent = (props) => {
     if(username && email && password) {
       if(password === passwordConfirm) {
         
-<<<<<<< HEAD
         fetch('https://wd64-nutrition-app.herokuapp.com/user/register', {
-=======
-        fetch('http://localhost:5200/register', {
->>>>>>> bd7ff479499dd5c43254d1b5c5b4e7ac17c00643
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

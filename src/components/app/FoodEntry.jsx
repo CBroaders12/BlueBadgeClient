@@ -62,11 +62,7 @@ const FoodEntryComponent = (props) => {
         <Label htmlFor="date_eaten">Enter a date eaten (defaults to today):</Label>
         <Input type="date" name="date" id="date_eaten" pattern="[0-9]{8}" onChange={(e) => setDate_eaten(e.target.value)} />
       </FormGroup>
-      <FormGroup>
-        <Label htmlFor="meal">Enter a meal ID:</Label>
-        <Input type="text" name="date" id="meal" onChange={(e) => setMeal(e.target.value)} />
-      </FormGroup>
-      <Button>Update</Button>
+      <Button disabled={!name || !date_eaten}>Enter Food</Button>
     </Form>
   );
 };

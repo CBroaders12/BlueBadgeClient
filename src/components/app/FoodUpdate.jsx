@@ -12,7 +12,7 @@ const FoodUpdateComponent = (props) => {
 
   const postFood = (data) => {
     
-    fetch('http://localhost:5200/log', {
+    fetch('https://wd64-nutrition-app.herokuapp.com/food', {
       method: 'PUT',
       body: JSON.stringify({log: data }),
       headers: new Headers ({

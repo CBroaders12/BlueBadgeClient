@@ -18,7 +18,7 @@ const LoginComponent = (props) => {
     event.preventDefault();
     
     if(username && password) {
-      fetch('http://localhost:5200/user/login', {
+      fetch('https://wd64-nutrition-app.herokuapp.com/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'},

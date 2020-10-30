@@ -2,24 +2,42 @@
 import './App.css';
 
 // React
-import React, {useState} from 'react';
-import {  } from 'reactstrap';
+import React, {useEffect, useState} from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 // Components
 import FoodAppIndex from './components/app/FoodAppIndex';
-import AuthIndex from './components/auth/AuthIndex';
 import NavigationComponent from './components/app/Navbar';
+import AuthIndex from './Components/Auth/AuthIndex';
 
 function App() {
-  const [token, setToken] = useState('');
+
+  const [authenticationJWT, changeAuthJWT] =useState("");
+  useEffect(() => {
+    if (window.localStorage.getItem("authToken")) {
+      changeAuthJWT(window.localStorage.getItem("authToken"));
+    }
+  }, []);
+  const authenticateUser = (token) => {
+    window.localStorage.setItem("authToken", token);
+    changeAuthJWT(token);
+  };
+
   return (
-    <div className="App">
-      <NavigationComponent />
-      <h1>Hello Blue Badge</h1>
-      <AuthIndex setToken={setToken}/>
-      <hr/>
-      <FoodAppIndex />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <NavigationComponent isLoggedIn={authenticationJWT} />
+        <Switch>
+          <Route exact path="/authindex">
+            <AuthIndex authenticateUser={authenticateUser} />
+          </Route>
+          <Route exact path="/food">
+            <FoodAppIndex token={authenticationJWT} />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
+    
   );
 }
 

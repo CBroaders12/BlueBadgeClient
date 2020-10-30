@@ -28,4 +28,6 @@ const FoodTableComponent = (props) => {
   
 };
 
+
+
 export default FoodTableComponent;

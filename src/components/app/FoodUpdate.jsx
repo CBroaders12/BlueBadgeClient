@@ -8,13 +8,13 @@ const FoodUpdateComponent = (props) => {
   const [servings, setServings] = useState('');
   const [calories, setCalories] = useState('');
   const [date_eaten, setDate_eaten] = useState('');
-  const [meal, setMeal] = useState('');
+  const [meal, setMeal] = useState('snack');
 
   const postFood = (data) => {
     
     fetch('https://wd64-nutrition-app.herokuapp.com/food', {
       method: 'PUT',
-      body: JSON.stringify({log: data }),
+      body: JSON.stringify(data),
       headers: new Headers ({
         'Content-Type': 'application/json',
         'Authorization': props.token
@@ -31,7 +31,7 @@ const FoodUpdateComponent = (props) => {
     .then(response => response.json())
     .then(data => {
       
-      let postData = {name: name, description: description, servings: servings, calories: data.hints[0].food.nutrients.ENERC_KCAL, date_eaten: date_eaten}
+      let postData = {name: name, description: description, servings: servings, calories: data.hints[0].food.nutrients.ENERC_KCAL, date_eaten: date_eaten, meal: meal}
       postFood(postData);
       //setCarbs(data.hints[0].food.nutrients.CHOCDF) 
       //setFat(data.hints[0].food.nutrients.FAT) 
@@ -65,6 +65,7 @@ const FoodUpdateComponent = (props) => {
         <Label htmlFor="meal">Enter a meal ID:</Label>
         <Input type="text" name="date" id="meal" onChange={(e) => setMeal(e.target.value)} />
       </FormGroup>
+      <Button>Update Food</Button>
     </Form>
     </>
   );

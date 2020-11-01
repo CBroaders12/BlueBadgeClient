@@ -6,7 +6,7 @@ const FoodTableComponent = (props) => {
 
   const [logs, setLogs] = useState([]);
 
-  fetch('http://wd64-nutrition-app.herokuapp.com', {
+  fetch('http://wd64-nutrition-app.herokuapp.com/food', {
     headers: {"Authorization": props.token}
   }).then(response => response.json())
   .then(data => setLogs(data))

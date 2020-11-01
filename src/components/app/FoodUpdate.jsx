@@ -12,7 +12,7 @@ const FoodUpdateComponent = (props) => {
 
   const postFood = (data) => {
     
-    fetch('https://wd64-nutrition-app.herokuapp.com/food', {
+    fetch(`https://wd64-nutrition-app.herokuapp.com/food/${props.activeId}`, {
       method: 'PUT',
       body: JSON.stringify(data),
       headers: new Headers ({
@@ -30,8 +30,8 @@ const FoodUpdateComponent = (props) => {
     fetch(`${baseUrl}${name}${apiId}${apiKey}`)
     .then(response => response.json())
     .then(data => {
-      
-      let postData = {name: name, description: description, servings: servings, calories: data.hints[0].food.nutrients.ENERC_KCAL, date_eaten: date_eaten, meal: meal}
+      let caloriesReturned = data.hints[0].food.nutrients.ENERC_KCAL * servings;
+      let postData = {name: name, description: description, servings: servings, calories: caloriesReturned, date_eaten: date_eaten, meal: meal}
       postFood(postData);
       //setCarbs(data.hints[0].food.nutrients.CHOCDF) 
       //setFat(data.hints[0].food.nutrients.FAT) 

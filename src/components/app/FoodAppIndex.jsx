@@ -20,9 +20,9 @@ const FoodAppIndex = (props) => {
         <Navbar>
         
         <Switch>
-          <Route exact path="/food"><FoodEntryComponent/></Route>
-          <Route exact path="/table/:id"><FoodTableComponent/></Route>
-          <Route exact path="/food"><FoodUpdateComponent/></Route>
+          <Route exact path="/foodentry"><FoodEntryComponent token={props.token}/></Route>
+          <Route exact path="/table/:id"><FoodTableComponent token={props.token}/></Route>
+          <Route exact path="/foodupdate"><FoodUpdateComponent token={props.token}/></Route>
           {/* <Route path="/calendar/:id"><CalendarViewComponent/></Route> */}
         </Switch>
         </Navbar>

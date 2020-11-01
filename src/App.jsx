@@ -11,6 +11,8 @@ import NavigationComponent from './components/app/Navbar';
 import AuthIndex from './components/auth/AuthIndex';
 import RegisterComponent from './components/auth/Register';
 import LoginComponent from './components/auth/Login';
+import FoodEntryComponent from './components/app/FoodEntry';
+import FoodUpdateComponent from './components/app/FoodUpdate';
 
 function App() {
 
@@ -36,8 +38,11 @@ function App() {
           <Route exact path="/login">
             <LoginComponent authenticateUser={authenticateUser}/>
           </Route>
-          <Route exact path="/food">
-            <FoodAppIndex token={token} />
+          <Route exact path="/foodentry">
+            <FoodEntryComponent token={token} />
+          </Route>
+          <Route exact path='/foodupdate'>
+            <FoodUpdateComponent token={token}/>
           </Route>
         </Switch>
       </div>

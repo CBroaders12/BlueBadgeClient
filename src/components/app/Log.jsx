@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row, Col} from 'reactstrap';
+import {Container, Row, Col, Button} from 'reactstrap';
 
 const Log = ({title, name, description, servings, calories, meal}) => {
     return (
@@ -28,6 +28,7 @@ const Log = ({title, name, description, servings, calories, meal}) => {
                     <Col>Meal ID:</Col>
                     <Col>{meal}</Col>
                 </Row>
+                <Button>Edit Food</Button>
             </Container>
         </>
     );

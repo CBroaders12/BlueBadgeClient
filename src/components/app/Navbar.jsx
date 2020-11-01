@@ -16,16 +16,16 @@ const NavigationComponent = (props) => {
                     ? (
                         <>
                         <NavItem>
-                            <Link to="/entry"></Link>
+                            <Link to="/food">Food Entry</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/table"></Link>
+                            <Link to="/table">Food Table</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/update"></Link>
+                            <Link to="/update">Food Update</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/calendar"></Link>
+                            <Link to="/calendar">Food Calendar</Link>
                         </NavItem>
                         </>
                     ) : (

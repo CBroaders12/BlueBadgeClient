@@ -33,7 +33,10 @@ const FoodEntryComponent = (props) => {
     .then(data => {
       setCalories(data.hints[0].food.nutrients.ENERC_KCAL); 
       let postData = {name: name, description: description, servings: servings, calories: data.hints[0].food.nutrients.ENERC_KCAL, date_eaten: date_eaten, meal: meal}
-      postFood(postData); 
+      postFood(postData);
+      //setCarbs(data.hints[0].food.nutrients.CHOCDF) 
+      //setFat(data.hints[0].food.nutrients.FAT) 
+      //setProtein(data.hints[0].food.nutrients.PROCNT) 
     });
   }
 

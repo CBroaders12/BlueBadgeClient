@@ -1,5 +1,6 @@
 import React,  { useEffect } from 'react';
 import {  } from 'reactstrap';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import FoodEntryComponent from './FoodEntry';
 import FoodTableComponent from './FoodTable';
@@ -18,7 +19,7 @@ const FoodAppIndex = (props) => {
       <div>
         <Navbar />
         <Switch>
-          <Route path="/entry/:id" component={FoodEntryComponent} token={props.token} />
+          <Route path="/food" component={FoodEntryComponent} token={props.token} />
           <Route path="/table/:id" component={FoodTableComponent} token={props.token} />
           <Route path="/update/:id" component={FoodUpdateComponent} token={props.token} />
           <Route path="/calendar/:id" component={CalendarViewComponent} token={props.token} />

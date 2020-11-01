@@ -22,11 +22,11 @@ const NavigationComponent = (props) => {
                             <Link to="/table">Food Table</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/update">Food Update</Link>
+                            <Link to="/food">Food Update</Link>
                         </NavItem>
-                        <NavItem>
+                        {/* <NavItem>
                             <Link to="/calendar">Food Calendar</Link>
-                        </NavItem>
+                        </NavItem> */}
                         </>
                     ) : (
                         <>

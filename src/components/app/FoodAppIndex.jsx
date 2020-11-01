@@ -1,12 +1,12 @@
 import React,  { useEffect } from 'react';
-import {  } from 'reactstrap';
+import {Navbar} from 'reactstrap';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import FoodEntryComponent from './FoodEntry';
 import FoodTableComponent from './FoodTable';
 import FoodUpdateComponent from './FoodUpdate';
 import CalendarViewComponent from './CalendarView';
-import Navbar from './Navbar';
+import NavigationComponent from './Navbar';
 
 const FoodAppIndex = (props) => {
 
@@ -17,13 +17,15 @@ const FoodAppIndex = (props) => {
   return (
     <BrowserRouter>
       <div>
-        <Navbar />
+        <Navbar>
+        
         <Switch>
-          <Route path="/food" component={FoodEntryComponent} token={props.token} />
-          <Route path="/table/:id" component={FoodTableComponent} token={props.token} />
-          <Route path="/update/:id" component={FoodUpdateComponent} token={props.token} />
-          <Route path="/calendar/:id" component={CalendarViewComponent} token={props.token} />
+          <Route exact path="/food"><FoodEntryComponent/></Route>
+          <Route exact path="/table/:id"><FoodTableComponent/></Route>
+          <Route exact path="/food"><FoodUpdateComponent/></Route>
+          {/* <Route path="/calendar/:id"><CalendarViewComponent/></Route> */}
         </Switch>
+        </Navbar>
       </div>
     </BrowserRouter>
   );

@@ -41,7 +41,7 @@ const FoodEntryComponent = (props) => {
   }
 
   return(
-    <Modal isOpen={true}>
+    <Modal isOpen={false}>
     <ModalHeader>Log Your Food!</ModalHeader>
     <ModalBody>
     <Form onSubmit={(e) => handleSubmit(e)} className='Form'>

@@ -25,7 +25,10 @@ const FoodTableComponent = (props) => {
       "Authorization": props.token
     }
     })
-    .then(response => response.json())
+    .then(response => {
+      console.log(props.token)
+      response.json()
+    })
     .then(data => {
       console.log(data);
       setLogs(data.result);

@@ -1,41 +1,19 @@
 import React from 'react';
-import {Container, Row, Col, Button} from 'reactstrap';
+import {Button} from 'reactstrap';
 
-const Log = ({title, name, description, servings, calories, meal}) => {
-   console.log(title);
+const Log = (props) => {
+ 
     return (
         <>
-            <Container>
-                <Row>
-                    <Col><h1>{title}</h1></Col>
-                </Row>
-                <Row>
-                    <Col>Ingredient:</Col>
-                    <Col>{name}</Col>
-                </Row>
-                <Row>
-                    <Col>Description:</Col>
-                    <Col>{description}</Col>
-                </Row>
-                <Row>
-                    <Col>Servings:</Col>
-                    <Col>{servings}</Col>
-                </Row>
-                <Row>
-                    <Col>Calories:</Col>
-                    <Col>{calories}</Col>
-                </Row>
-                <Row>
-                    <Col>Meal ID:</Col>
-                    <Col>{meal}</Col>
-                </Row>
-                <Button>Edit Food</Button>
-            </Container>
+            <tr>
+                <td className="table-foodname">{props.name}</td>
+                <td className="table-servings">{props.servings}</td>
+                <td className="table-calories">{props.calories}</td>
+                {/* <td><Button onClick={FoodUpdateModal??}>Update</Button></td>
+                <td><Button onClick={deleteFood}>Delete</Button></td> */}
+            </tr> 
         </>
     );
 };
 
 export default Log;
-
-
-

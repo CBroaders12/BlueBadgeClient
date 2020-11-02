@@ -23,6 +23,7 @@ function App() {
   useEffect(() => {
     if (window.localStorage.getItem("authToken")) {
       setToken(window.localStorage.getItem("authToken"));
+      setIsLoggedIn(true);
     }
   });
 

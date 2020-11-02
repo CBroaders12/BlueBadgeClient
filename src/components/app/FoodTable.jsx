@@ -8,19 +8,30 @@ const FoodTableComponent = (props) => {
   const [logs, setLogs] = useState([]);
   const [activeId, setActiveId] = useState(null);
 
+  const deleteFood = () => {
+    fetch(`http://wd64-nutrition-app.herokuapp.com/food/${activeId}`, {
+      method: 'DELETE',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': props.token
+      })
+    })
+    .then(() => props.fetchFoodTable())
+  }
+
   
-console.log(logs);
 
-  // useEffect(() => {
-  //   fetch('http://wd64-nutrition-app.herokuapp.com/food', {
 
-  //   body: JSON.stringify({owner_id, date_eaten}),
-  //   headers: {"Authorization": props.token}
-  // }).then(response => response.json())
-  // .then(data => setLogs(data))
-  // .catch(error => console.log(error));
-  // }, [setLogs]);
-console.log(props.token)
+  const fetchFoodTable = (() => {
+    fetch('http://wd64-nutrition-app.herokuapp.com/food', {
+
+    body: JSON.stringify({}),
+    headers: {"Authorization": props.token}
+  }).then(response => response.json())
+  .then(data => setLogs(data))
+  .catch(error => console.log(error));
+  }, [setLogs]);
+
   return(
     <>
     {/* <FoodUpdateComponent activeId={activeId}/> */}

@@ -38,14 +38,18 @@ const FoodTableComponent = (props) => {
     fetchFoodTable();
   }, [])
 
+  let today = new Date().toISOString().slice(0, 10);
+  let yesterday = new Date(Date.now() - 1 * 86400000).toISOString().split('T')[0];
+  let todaysLog = logs.filter(key => key.date_eaten === today);
+  let yesterdaysLog = logs.filter(key => key.date_eaten === yesterday);
+
   return(
     <>
     {
-      logs.map(log => (
+      todaysLog.map(log => (
         <Log 
           title={log.date_eaten} 
           name={log.name} 
-          description={log.description} 
           servings={log.servings} 
           calories={log.calories} 
           meal={log.meal} />

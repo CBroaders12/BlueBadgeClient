@@ -21,23 +21,26 @@ const FoodTableComponent = (props) => {
 
   const fetchFoodTable = (() => {
     fetch('http://wd64-nutrition-app.herokuapp.com/food', {
-    headers: {
-      "Authorization": props.token
-    }
-    })
-    .then(response => {
-      console.log(props.token)
-      response.json()
-    })
-    .then(data => {
-      console.log(data);
-      setLogs(data.result);
-      console.log(logs);
-    })
-    .catch(error => console.log(error));
-    });
+      headers: {
+        "Authorization": props.token
+      }
+      })
+      .then(response => {
+        console.log(props.token)
+        response.json()
+      })
+      .then(data => {
+        console.log(data);
+        setLogs(data.result);
+        console.log(logs);
+      })
+      .catch(error => console.log(error));
+      });
 
-  useEffect(fetchFoodTable, [])
+  useEffect(() => {
+    fetchFoodTable();
+    
+  }, [])
 
   return(
     <>

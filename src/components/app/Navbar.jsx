@@ -19,7 +19,7 @@ const NavigationComponent = (props) => {
                             <Link to="/foodentry">Food Entry</Link>
                         </NavItem>
                         <NavItem>
-                            <Link to="/table/:id">Food Table</Link>
+                            <Link to='/table/:id'>Food Table</Link>
                         </NavItem>
                         <NavItem>
                             <Link to="/foodupdate">Food Update</Link>

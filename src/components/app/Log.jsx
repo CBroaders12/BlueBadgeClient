@@ -2,6 +2,7 @@ import React from 'react';
 import {Container, Row, Col, Button} from 'reactstrap';
 
 const Log = ({title, name, description, servings, calories, meal}) => {
+   console.log(title);
     return (
         <>
             <Container>

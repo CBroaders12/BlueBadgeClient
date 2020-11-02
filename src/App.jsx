@@ -13,6 +13,7 @@ import RegisterComponent from './components/auth/Register';
 import LoginComponent from './components/auth/Login';
 import FoodEntryComponent from './components/app/FoodEntry';
 import FoodUpdateComponent from './components/app/FoodUpdate';
+import FoodTableComponent from './components/app/FoodTable';
 
 function App() {
 
@@ -44,6 +45,9 @@ function App() {
           <Route exact path='/foodupdate'>
             <FoodUpdateComponent token={token}/>
           </Route>
+            <Route exact path='/table/:id'>
+              <FoodTableComponent token={token}/>
+            </Route>
         </Switch>
       </div>
     </BrowserRouter>

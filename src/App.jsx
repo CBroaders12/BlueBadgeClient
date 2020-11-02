@@ -28,10 +28,15 @@ function App() {
     setToken(token);
   };
 
+  const clickLogout = () => {
+    localStorage.clear();
+    setToken('');
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
-        <NavigationComponent isLoggedIn={token} />
+        <NavigationComponent clickLogout={clickLogout} isLoggedIn={token} />
         <Switch>
           <Route exact path="/register">
             <RegisterComponent authenticateUser={authenticateUser} />

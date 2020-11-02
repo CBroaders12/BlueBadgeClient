@@ -41,6 +41,8 @@ const FoodEntryComponent = (props) => {
   }
 
   return(
+    <>
+    <h2>Food Entry</h2>
     <Form onSubmit={(e) => handleSubmit(e)} className='Form'>
       <FormGroup>
         <Label htmlFor="name">Enter an ingredient:</Label>
@@ -60,6 +62,7 @@ const FoodEntryComponent = (props) => {
       </FormGroup>
       <Button disabled={!name || !date_eaten}>Enter Food</Button>
     </Form>
+    </>
   );
 };
 

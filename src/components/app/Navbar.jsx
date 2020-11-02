@@ -24,9 +24,9 @@ const NavigationComponent = (props) => {
                         <NavItem>
                             <Link to="/foodupdate">Food Update</Link>
                         </NavItem>
-                        {/* <NavItem>
-                            <Link to="/calendar">Food Calendar</Link>
-                        </NavItem> */}
+                        <NavItem>
+                            <Link to='/login' onClick={props.clickLogout}>Logout</Link>
+                        </NavItem>
                         </>
                     ) : (
                         <>

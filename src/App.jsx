@@ -18,14 +18,17 @@ import FoodTableComponent from './components/app/FoodTable';
 function App() {
 
   const [token, setToken] =useState("");
+  
   useEffect(() => {
     if (window.localStorage.getItem("authToken")) {
       setToken(window.localStorage.getItem("authToken"));
     }
-  }, []);
+  });
+
   const authenticateUser = (token) => {
     window.localStorage.setItem("authToken", token);
     setToken(token);
+    console.log(token);
   };
 
   const clickLogout = () => {

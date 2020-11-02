@@ -42,7 +42,7 @@ const FoodUpdateComponent = (props) => {
 
   return(
     
-    <Modal isOpen={true}>
+    <Modal isOpen={false}>
     <ModalHeader>Update Food</ModalHeader>
     <ModalBody>
     <Form onSubmit={(e) => handleSubmit(e)}>

@@ -23,14 +23,12 @@ const FoodTableComponent = (props) => {
     fetch('https://wd64-nutrition-app.herokuapp.com/food', {
       method: 'GET',
       headers: {
+        "Content-Type": "application/json",
         "Authorization": props.token
       }
       })
       .then(response => response.json())
-      .then(data => {
-        setLogs(data.result);
-        console.log(logs);
-      })
+      .then(data => setLogs(data.result))
       .catch(error => console.log(error));
       });
 

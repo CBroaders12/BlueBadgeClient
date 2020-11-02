@@ -29,10 +29,7 @@ const LoginComponent = (props) => {
           password: password}),
 
       }).then(response => response.json())
-      .then((body) => {
-      props.authenticateUser(body.token);
-        console.log(body)
-      })
+      .then((body) => props.authenticateUser(body.token))
       .catch((error) => console.log(error));
     }
   };

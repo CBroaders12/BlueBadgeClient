@@ -3,7 +3,7 @@ import './App.css';
 
 // React
 import React, {useEffect, useState} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Router, Switch, Route} from 'react-router-dom';
 
 // Components
 import FoodAppIndex from './components/app/FoodAppIndex';
@@ -17,49 +17,54 @@ import FoodTableComponent from './components/app/FoodTable';
 
 function App() {
 
-  const [token, setToken] =useState("");
+  const [token, setToken] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   
   useEffect(() => {
     if (window.localStorage.getItem("authToken")) {
       setToken(window.localStorage.getItem("authToken"));
+      setIsAuthenticated(true);
     }
   });
 
   const authenticateUser = (token) => {
-    window.localStorage.setItem("authToken", token);
+    localStorage.setItem("authToken", token);
     setToken(token);
-    console.log(token);
+    setIsAuthenticated(true);
   };
 
   const clickLogout = () => {
     localStorage.clear();
     setToken('');
+    setIsAuthenticated(false);
   }
 
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <NavigationComponent clickLogout={clickLogout} isLoggedIn={token} />
-        <Switch>
-          <Route exact path="/register">
-            <RegisterComponent authenticateUser={authenticateUser} />
-          </Route>
-          <Route exact path="/login">
-            <LoginComponent authenticateUser={authenticateUser}/>
-          </Route>
-          <Route exact path="/foodentry">
-            <FoodEntryComponent token={token} />
-          </Route>
-          <Route exact path='/foodupdate'>
-            <FoodUpdateComponent token={token}/>
-          </Route>
-            <Route exact path='/table/:id'>
-              <FoodTableComponent token={token}/>
+  if (isAuthenticated) {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <NavigationComponent clickLogout={clickLogout} isLoggedIn={token} />
+          <Switch>
+            <Route exact path="/foodentry">
+              <FoodEntryComponent token={token} />
             </Route>
-        </Switch>
+            <Route exact path='/foodupdate'>
+              <FoodUpdateComponent token={token}/>
+            </Route>
+              <Route exact path='/table'>
+                <FoodTableComponent token={token}/>
+              </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
+  } else {
+    return(
+      <div>
+        <AuthIndex authenticateUser={authenticateUser}/>
       </div>
-    </BrowserRouter>
-  );
+    )
 }
 
+}
 export default App;

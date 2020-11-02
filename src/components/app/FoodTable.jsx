@@ -21,19 +21,13 @@ const FoodTableComponent = (props) => {
 
   const fetchFoodTable = (() => {
     fetch('https://wd64-nutrition-app.herokuapp.com/food', {
+      method: 'GET',
       headers: {
         "Authorization": props.token
-      },
-      body: JSON.stringify({
-        date_eaten: new Date()
+      }
       })
-      })
-      .then(response => {
-        console.log(props.token)
-        response.json()
-      })
+      .then(response => response.json())
       .then(data => {
-        console.log(data);
         setLogs(data.result);
         console.log(logs);
       })
@@ -42,21 +36,20 @@ const FoodTableComponent = (props) => {
 
   useEffect(() => {
     fetchFoodTable();
-  })
+  }, [])
 
   return(
     <>
-    {logs}
     {
-      // logs.map(log => (
-      //   <Log 
-      //     title={log.result.date_eaten} 
-      //     name={log.result.name} 
-      //     description={log.result.description} 
-      //     servings={log.result.servings} 
-      //     calories={log.result.calories} 
-      //     meal={log.result.meal} />
-      // ))
+      logs.map(log => (
+        <Log 
+          title={log.date_eaten} 
+          name={log.name} 
+          description={log.description} 
+          servings={log.servings} 
+          calories={log.calories} 
+          meal={log.meal} />
+      ))
     }
     </>
   );

@@ -28,6 +28,7 @@ function App() {
   const authenticateUser = (token) => {
     window.localStorage.setItem("authToken", token);
     setToken(token);
+    console.log(token);
   };
 
   const clickLogout = () => {

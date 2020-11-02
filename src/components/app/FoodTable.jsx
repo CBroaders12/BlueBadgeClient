@@ -20,10 +20,13 @@ const FoodTableComponent = (props) => {
   }
 
   const fetchFoodTable = (() => {
-    fetch('http://wd64-nutrition-app.herokuapp.com/food', {
+    fetch('https://wd64-nutrition-app.herokuapp.com/food', {
       headers: {
         "Authorization": props.token
-      }
+      },
+      body: JSON.stringify({
+        date_eaten: new Date()
+      })
       })
       .then(response => {
         console.log(props.token)
@@ -39,8 +42,7 @@ const FoodTableComponent = (props) => {
 
   useEffect(() => {
     fetchFoodTable();
-    
-  }, [])
+  })
 
   return(
     <>

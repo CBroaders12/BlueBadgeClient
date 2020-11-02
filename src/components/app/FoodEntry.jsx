@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Form, FormGroup, Label, Input, Button} from 'reactstrap'
+import {Form, FormGroup, Label, Input, Button, Modal, ModalBody, ModalHeader} from 'reactstrap'
 
 const FoodEntryComponent = (props) => {
   const [name, setName] = useState('');
@@ -41,8 +41,9 @@ const FoodEntryComponent = (props) => {
   }
 
   return(
-    <>
-    <h2>Food Entry</h2>
+    <Modal isOpen={true}>
+    <ModalHeader>Log Your Food!</ModalHeader>
+    <ModalBody>
     <Form onSubmit={(e) => handleSubmit(e)} className='Form'>
       <FormGroup>
         <Label htmlFor="name">Enter an ingredient:</Label>
@@ -62,7 +63,8 @@ const FoodEntryComponent = (props) => {
       </FormGroup>
       <Button disabled={!name || !date_eaten}>Enter Food</Button>
     </Form>
-    </>
+    </ModalBody>
+    </Modal>
   );
 };
 

@@ -41,9 +41,10 @@ const FoodUpdateComponent = (props) => {
     
 
   return(
-    <>
-    <h2>Update Food</h2>
-    <hr/>
+    
+    <Modal isOpen={true}>
+    <ModalHeader>Update Food</ModalHeader>
+    <ModalBody>
     <Form onSubmit={(e) => handleSubmit(e)}>
       <FormGroup>
         <Label htmlFor="name">Enter an ingredient:</Label>
@@ -67,7 +68,9 @@ const FoodUpdateComponent = (props) => {
       </FormGroup>
       <Button>Update Food</Button>
     </Form>
-    </>
+    </ModalBody>
+    </Modal>
+    
   );
 };
 

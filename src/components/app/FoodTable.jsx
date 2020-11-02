@@ -11,15 +11,15 @@ const FoodTableComponent = (props) => {
   
 console.log(logs);
 
-  useEffect(() => {
-    fetch('http://wd64-nutrition-app.herokuapp.com/food', {
+  // useEffect(() => {
+  //   fetch('http://wd64-nutrition-app.herokuapp.com/food', {
 
-    body: JSON.stringify(),
-    headers: {"Authorization": props.token}
-  }).then(response => response.json())
-  .then(data => setLogs(data))
-  .catch(error => console.log(error));
-  }, [setLogs]);
+  //   body: JSON.stringify({owner_id, date_eaten}),
+  //   headers: {"Authorization": props.token}
+  // }).then(response => response.json())
+  // .then(data => setLogs(data))
+  // .catch(error => console.log(error));
+  // }, [setLogs]);
 console.log(props.token)
   return(
     <>

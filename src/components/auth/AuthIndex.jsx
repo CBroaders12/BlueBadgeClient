@@ -9,8 +9,8 @@ const AuthIndex = (props) => {
   return(
     <div>
       <h2>Register/Login Here</h2>
-      <RegisterComponent setToken={props.authenticateUser}/>
-      <LoginComponent setToken={props.authenticateUser}/>
+      <RegisterComponent authenticateUser={props.authenticateUser}/>
+      <LoginComponent authenticateUser={props.authenticateUser}/>
     </div>
   );
 };

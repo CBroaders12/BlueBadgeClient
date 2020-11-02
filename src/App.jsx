@@ -17,7 +17,8 @@ import FoodTableComponent from './components/app/FoodTable';
 
 function App() {
 
-  const [token, setToken] =useState("");
+  const [token, setToken] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   
   useEffect(() => {
     if (window.localStorage.getItem("authToken")) {
@@ -28,38 +29,41 @@ function App() {
   const authenticateUser = (token) => {
     window.localStorage.setItem("authToken", token);
     setToken(token);
-    console.log(token);
+    setIsLoggedIn(true);
   };
 
   const clickLogout = () => {
     localStorage.clear();
     setToken('');
+    setIsLoggedIn(false);
   }
 
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <NavigationComponent clickLogout={clickLogout} isLoggedIn={token} />
-        <Switch>
-          <Route exact path="/register">
-            <RegisterComponent authenticateUser={authenticateUser} />
-          </Route>
-          <Route exact path="/login">
-            <LoginComponent authenticateUser={authenticateUser}/>
-          </Route>
-          <Route exact path="/foodentry">
-            <FoodEntryComponent token={token} />
-          </Route>
-          <Route exact path='/foodupdate'>
-            <FoodUpdateComponent token={token}/>
-          </Route>
-            <Route exact path='/table/:id'>
-              <FoodTableComponent token={token}/>
+  if (isLoggedIn) {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <NavigationComponent clickLogout={clickLogout} isLoggedIn={token} />
+          <Switch>
+            <Route exact path="/foodentry">
+              <FoodEntryComponent token={token} />
             </Route>
-        </Switch>
+            <Route exact path='/foodupdate'>
+              <FoodUpdateComponent token={token}/>
+            </Route>
+              <Route exact path='/table/:id'>
+                <FoodTableComponent token={token}/>
+              </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    )
+  } else {
+    return(
+      <div>
+        <AuthIndex authenticateUser={authenticateUser}/>
       </div>
-    </BrowserRouter>
-  );
+    )
+  }
 }
 
 export default App;

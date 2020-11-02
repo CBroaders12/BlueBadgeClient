@@ -62,6 +62,7 @@ const RegisterComponent = (props) => {
         <Input id='registerConfirmPassword' type='password' name='registerConfirmPassword' onChange={passwordConfirmInputChange}></Input>
       </FormGroup>
       <Button>Register</Button>
+      <p onClick={props.switchAuth}>Click Here to Login</p>
     </Form>
   );
 };

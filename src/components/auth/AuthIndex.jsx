@@ -1,4 +1,4 @@
-import React,  {  } from 'react';
+import React,  { useState } from 'react';
 import {  } from 'reactstrap';
 
 import RegisterComponent from './Register';
@@ -6,13 +6,25 @@ import LoginComponent from './Login';
 
 const AuthIndex = (props) => {
 
-  return(
-    <div>
-      <h2>Register/Login Here</h2>
-      <RegisterComponent authenticateUser={props.authenticateUser}/>
-      <LoginComponent authenticateUser={props.authenticateUser}/>
-    </div>
-  );
+  const [ isLoggingIn, setIsLoggingIn ] = useState(true);
+
+  const switchAuth = () => {
+    setIsLoggingIn(!isLoggingIn);
+  }
+
+  if (isLoggingIn) {
+    return(
+      <div>
+        <LoginComponent authenticateUser={props.authenticateUser} switchAuth={switchAuth}/>
+      </div>
+    )
+  } else {
+    return(
+      <div>
+        <RegisterComponent authenticateUser={props.authenticateUser} switchAuth={switchAuth}/>
+      </div>
+    )
+  }
 };
 
 export default AuthIndex;

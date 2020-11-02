@@ -1,5 +1,6 @@
 import React,  {useState} from 'react';
 import { Form, Label, FormGroup, Button, Input } from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 const LoginComponent = (props) => {
 
@@ -49,6 +50,8 @@ const LoginComponent = (props) => {
         <Input onChange={passwordChange} value={password} id='password' type='password' name='password'></Input>
       </FormGroup>
       <Button>Login</Button>
+      <hr/>
+      <h6>Need to create an account? <Link to="/register">Register</Link></h6>
     </Form>
   );
 };

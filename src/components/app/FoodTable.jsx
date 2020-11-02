@@ -1,7 +1,9 @@
 
 import React, {useState, useEffect} from 'react';
+import {Button} from 'reactstrap';
 import Log from './Log';
 import FoodUpdateComponent from './FoodUpdate';
+import FoodEntryComponent from './FoodEntry';
 
 const FoodTableComponent = (props) => {
 
@@ -46,6 +48,7 @@ const FoodTableComponent = (props) => {
 
   return(
     <>
+    <Button onClick={FoodEntryComponent}>Add Food</Button>
     {logs}
     {
       // logs.map(log => (

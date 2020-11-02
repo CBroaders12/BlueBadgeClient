@@ -1,5 +1,6 @@
 import React,  { useState } from 'react';
 import { Form, Button, Input, FormGroup, Label } from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 const RegisterComponent = (props) => {
 
@@ -62,6 +63,8 @@ const RegisterComponent = (props) => {
         <Input id='registerConfirmPassword' type='password' name='registerConfirmPassword' onChange={passwordConfirmInputChange}></Input>
       </FormGroup>
       <Button>Register</Button>
+      <hr/>
+      <h6>Already have an account? <Link to="/login">Login</Link></h6>
     </Form>
   );
 };

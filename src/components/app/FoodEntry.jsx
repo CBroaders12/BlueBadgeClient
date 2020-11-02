@@ -8,6 +8,8 @@ const FoodEntryComponent = (props) => {
   const [calories, setCalories] = useState('');
   const [date_eaten, setDate_eaten] = useState('');
   const [meal, setMeal] = useState('test');
+  
+ 
 
   
   const postFood = (data) => {
@@ -41,12 +43,12 @@ const FoodEntryComponent = (props) => {
   }
 
   return(
-    <Modal isOpen={true}>
-    <ModalHeader>Log Your Food!</ModalHeader>
+    <Modal>
+    <ModalHeader>Track Your Food!</ModalHeader>
     <ModalBody>
     <Form onSubmit={(e) => handleSubmit(e)} className='Form'>
       <FormGroup>
-        <Label htmlFor="name">Enter an ingredient:</Label>
+        <Label htmlFor="name">Enter a Food:</Label>
         <Input type="text" name="text" id="name" onChange={(e) => setName(e.target.value)} />
       </FormGroup>
       <FormGroup>
@@ -61,7 +63,7 @@ const FoodEntryComponent = (props) => {
         <Label htmlFor="date_eaten">Enter a date eaten (defaults to today):</Label>
         <Input type="date" name="date" id="date_eaten" pattern="[0-9]{8}" onChange={(e) => setDate_eaten(e.target.value)} />
       </FormGroup>
-      <Button disabled={!name || !date_eaten}>Enter Food</Button>
+      <Button disabled={!name || !date_eaten}>Track It!</Button>
     </Form>
     </ModalBody>
     </Modal>

@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Bubbler+One&display=swap');
-
 body {
   margin: 0;
-  font-family: 'Bubbler One', sans-serif;
+  font-family: 'Exo', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -15,3 +13,11 @@ code {
 .Form {
   width: 50%;
 }
+
+@font-face{
+  font-family: Exo;
+  src: url('./fonts/Exo-Italic-VariableFont_wght.ttf')
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bubbler+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');

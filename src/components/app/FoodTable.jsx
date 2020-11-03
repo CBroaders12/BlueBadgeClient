@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react';
-import {Button} from 'reactstrap';
+import { Button, Table } from 'reactstrap';
 import Log from './Log';
 import FoodUpdateComponent from './FoodUpdate';
 import FoodEntryComponent from './FoodEntry';
@@ -11,6 +11,7 @@ const FoodTableComponent = (props) => {
   const [activeId, setActiveId] = useState(null);
   const [ updateModalOpen, setUpdateModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
+  const [ totalCals, setTotalCals] = useState(0);
 
   const deleteFood = (activeId) => {
     fetch(`http://wd64-nutrition-app.herokuapp.com/food/${activeId}`, {
@@ -21,6 +22,10 @@ const FoodTableComponent = (props) => {
       })
     })
     .then(() => fetchFoodTable())
+  }
+
+  const addToTotalCals = (addedCals) => {
+    setTotalCals(totalCals + addedCals);
   }
 
   const fetchFoodTable = (() => {
@@ -55,23 +60,42 @@ const FoodTableComponent = (props) => {
   return(
     <>
     <Button style={{backgroundColor:'green'}} onClick={() => setAddModalOpen(true)}>Add Food</Button>
-    {
-      todaysLog.map(log => (
-        <Log 
-          deleteFood={deleteFood}
-          fetchFoodTable={fetchFoodTable}
-          modalOpen={updateModalOpen}
-          setModalOpen={setUpdateModalOpen}
-          token={props.token}
-          activeId={log.id}
-          key={log.id}
-          title={log.date_eaten} 
-          name={log.name} 
-          servings={log.servings} 
-          calories={log.calories} 
-          meal={log.meal} />
-      ))
-    }
+    <Table>
+      <thead>
+        <tr>
+          <th>Food</th>
+          <th>Servings</th>
+          <th>Calories</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      {
+        todaysLog.map(log => {
+          return(
+          <Log 
+            deleteFood={deleteFood}
+            fetchFoodTable={fetchFoodTable}
+            modalOpen={updateModalOpen}
+            setModalOpen={setUpdateModalOpen}
+            token={props.token}
+            activeId={log.id}
+            key={log.id}
+            title={log.date_eaten} 
+            name={log.name} 
+            servings={log.servings} 
+            calories={log.calories} 
+            meal={log.meal} />
+          )
+        })
+      }
+      {/* <tfoot>
+        <tr>
+          <td colSpan="2">Total</td>
+          <td>{totalCals}</td>
+        </tr>
+      </tfoot> */}
+    </Table>
     <FoodEntryComponent token={props.token} isOpen={addModalOpen} onClose={() => setAddModalOpen(false)} fetchFoodTable={fetchFoodTable}/>
     </>
   );

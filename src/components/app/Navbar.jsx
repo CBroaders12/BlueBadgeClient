@@ -7,7 +7,7 @@ const NavigationComponent = (props) => {
     const toggleNavbarMenu = () => changeIsOpen(!isOpen);
 
     return (
-        <Navbar light expand="md">
+        <Navbar light expand="md" className='navbar'>
             <NavbarBrand>Nutrition App</NavbarBrand>
             <NavbarToggler onClick={toggleNavbarMenu} />
             <Collapse isOpen={isOpen} navbar>

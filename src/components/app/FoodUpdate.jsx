@@ -77,6 +77,7 @@ const FoodUpdateComponent = (props) => {
           </Input>
       </FormGroup>
       <Button style={{backgroundColor:'green'}}>Update Food</Button>
+      <Button color='secondary' onClick={() => {setModalOpen(); props.fetchFoodTable()}}>Cancel</Button>
     </Form>
     </ModalBody>
     </Modal>

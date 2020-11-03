@@ -47,7 +47,7 @@ const LoginComponent = (props) => {
         <Input onChange={passwordChange} value={password} id='password' type='password' name='password'></Input>
       </FormGroup>
       <Button style={{backgroundColor:'green'}}>Login</Button>
-      <p onClick={props.switchAuth}>Click Here to Register</p>
+      <p onClick={props.switchAuth}>Need to create an account? Click here to <Link to='register'>Register</Link></p>
     </Form>
 
   );

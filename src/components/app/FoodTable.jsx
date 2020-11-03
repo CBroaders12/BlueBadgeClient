@@ -40,10 +40,17 @@ const FoodTableComponent = (props) => {
     fetchFoodTable();
   }, [])
 
-  let today = new Date().toISOString().slice(0, 10);
-  let yesterday = new Date(Date.now() - 1 * 86400000).toISOString().split('T')[0];
-  let todaysLog = logs.filter(key => key.date_eaten === today);
-  let yesterdaysLog = logs.filter(key => key.date_eaten === yesterday);
+  // Get today's dat in UTC and calculate local offset
+  let todayUTC = new Date()/*.toISOString().slice(0, 10);*/
+  let offset = todayUTC.getTimezoneOffset() * 60 * 1000;
+  let localTime = todayUTC - offset;
+  
+  // Create YYYY-MM-DD strings for days
+  let todayLocal = new Date(localTime).toISOString().slice(0,10);
+  let yesterdayLocal = new Date(localTime - 1 * 86400000).toISOString().split('T')[0];
+
+  let todaysLog = logs.filter(key => key.date_eaten === todayLocal);
+  let yesterdaysLog = logs.filter(key => key.date_eaten === yesterdayLocal);
 
   return(
     <>

@@ -72,7 +72,7 @@ const FoodUpdateComponent = (props) => {
           <option value="Snack">Snack</option>
           </Input>
       </FormGroup>
-      <Button>Update Food</Button>
+      <Button style={{backgroundColor:'green'}}>Update Food</Button>
     </Form>
     </ModalBody>
     </Modal>

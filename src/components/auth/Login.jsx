@@ -49,7 +49,7 @@ const LoginComponent = (props) => {
         <Label htmlFor='password'>Password:</Label>
         <Input onChange={passwordChange} value={password} id='password' type='password' name='password'></Input>
       </FormGroup>
-      <Button>Login</Button>
+      <Button style={{backgroundColor:'green'}}>Login</Button>
       <hr/>
       <h6>Need to create an account? <Link to="/register">Register</Link></h6>
     </Form>

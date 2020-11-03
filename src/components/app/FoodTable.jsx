@@ -23,19 +23,13 @@ const FoodTableComponent = (props) => {
 
   const fetchFoodTable = (() => {
     fetch('https://wd64-nutrition-app.herokuapp.com/food', {
+      method: 'GET',
       headers: {
         "Authorization": props.token
-      },
-      body: JSON.stringify({
-        date_eaten: new Date()
+      }
       })
-      })
-      .then(response => {
-        console.log(props.token)
-        response.json()
-      })
+      .then(response => response.json())
       .then(data => {
-        console.log(data);
         setLogs(data.result);
         console.log(logs);
       })
@@ -44,22 +38,24 @@ const FoodTableComponent = (props) => {
 
   useEffect(() => {
     fetchFoodTable();
-  })
+  }, [])
+
+  let today = new Date().toISOString().slice(0, 10);
+  let yesterday = new Date(Date.now() - 1 * 86400000).toISOString().split('T')[0];
+  let todaysLog = logs.filter(key => key.date_eaten === today);
+  let yesterdaysLog = logs.filter(key => key.date_eaten === yesterday);
 
   return(
     <>
-    <Button onClick={FoodEntryComponent}>Add Food</Button>
-    {logs}
     {
-      // logs.map(log => (
-      //   <Log 
-      //     title={log.result.date_eaten} 
-      //     name={log.result.name} 
-      //     description={log.result.description} 
-      //     servings={log.result.servings} 
-      //     calories={log.result.calories} 
-      //     meal={log.result.meal} />
-      // ))
+      todaysLog.map(log => (
+        <Log 
+          title={log.date_eaten} 
+          name={log.name} 
+          servings={log.servings} 
+          calories={log.calories} 
+          meal={log.meal} />
+      ))
     }
     </>
   );

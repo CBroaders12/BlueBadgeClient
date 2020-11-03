@@ -62,7 +62,7 @@ const RegisterComponent = (props) => {
         <Label htmlFor='registerConfirmPassword'>Confirm Password:</Label>
         <Input id='registerConfirmPassword' type='password' name='registerConfirmPassword' onChange={passwordConfirmInputChange}></Input>
       </FormGroup>
-      <Button>Register</Button>
+      <Button style={{backgroundColor:'green'}}>Register</Button>
       <hr/>
       <h6>Already have an account? <Link to="/login">Login</Link></h6>
     </Form>

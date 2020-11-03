@@ -9,6 +9,9 @@ const FoodUpdateComponent = (props) => {
   const [calories, setCalories] = useState('');
   const [date_eaten, setDate_eaten] = useState('');
   const [meal, setMeal] = useState('snack');
+  
+  const{setModalOpen} = props;
+    
 
   const postFood = (data) => {
     
@@ -19,11 +22,12 @@ const FoodUpdateComponent = (props) => {
         'Content-Type': 'application/json',
         'Authorization': props.token
       })
-    })
+    }).then(() => {setModalOpen(false); props.fetchFoodTable()})
   }
 
-  const handleSubmit =() => {
-    let baseUrl = 'https://api.edamam.com/api/food-database/v2/parser?ingr';
+  const handleSubmit =(e) => {
+    e.preventDefault();
+    let baseUrl = 'https://api.edamam.com/api/food-database/v2/parser?ingr=';
     let apiId = '&app_id=bbd2cb26';
     let apiKey = '&app_key=a5f3a4c05e09c2955943a1cd6bb8396b';
     
@@ -42,8 +46,8 @@ const FoodUpdateComponent = (props) => {
 
   return(
     
-    <Modal isOpen={true} className='Form'>
-    <ModalHeader>Update Food</ModalHeader>
+    <Modal isOpen={props.isOpen} onClose={() => setModalOpen(false)} className='Form'>
+    <ModalHeader>Update Entry</ModalHeader>
     <ModalBody>
     <Form onSubmit={(e) => handleSubmit(e)}>
       <FormGroup>

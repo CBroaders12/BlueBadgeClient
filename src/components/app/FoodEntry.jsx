@@ -8,6 +8,10 @@ const FoodEntryComponent = (props) => {
   const [calories, setCalories] = useState('');
   const [date_eaten, setDate_eaten] = useState('');
   const [meal, setMeal] = useState('test');
+
+  const{onClose} = props;
+
+
   
  
 
@@ -21,7 +25,7 @@ const FoodEntryComponent = (props) => {
         'Content-Type': 'application/json',
         'Authorization': props.token
       })
-    })
+    }).then(() => {onClose(); props.fetchFoodTable()})
   }
 
   const handleSubmit = (e) => {
@@ -43,7 +47,7 @@ const FoodEntryComponent = (props) => {
   }
 
   return(
-    <Modal isOpen={true} className='Form'>
+    <Modal isOpen={props.isOpen} onClose={props.onClose} className='Form'>
     <ModalHeader>Track Your Food!</ModalHeader>
     <ModalBody>
     <Form onSubmit={(e) => handleSubmit(e)}>

@@ -30,10 +30,7 @@ const LoginComponent = (props) => {
           password: password}),
 
       }).then(response => response.json())
-      .then((body) => {
-      props.authenticateUser(body.token);
-        console.log(body)
-      })
+      .then((body) => props.authenticateUser(body.token))
       .catch((error) => console.log(error));
     }
   };
@@ -50,9 +47,9 @@ const LoginComponent = (props) => {
         <Input onChange={passwordChange} value={password} id='password' type='password' name='password'></Input>
       </FormGroup>
       <Button style={{backgroundColor:'green'}}>Login</Button>
-      <hr/>
-      <h6>Need to create an account? <Link to="/register">Register</Link></h6>
+      <p onClick={props.switchAuth}>Click Here to Register</p>
     </Form>
+
   );
 };
 

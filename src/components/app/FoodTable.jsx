@@ -9,30 +9,30 @@ const FoodTableComponent = (props) => {
 
   const [logs, setLogs] = useState([]);
   const [activeId, setActiveId] = useState(null);
+  const [ updateModalOpen, setUpdateModalOpen] = useState(false);
+  const [addModalOpen, setAddModalOpen] = useState(false);
 
-  const deleteFood = () => {
-    fetch(`http://wd64-nutrition-app.herokuapp.com/food/${activeId}`, {
+  const deleteFood = (log) => {
+    fetch(`http://wd64-nutrition-app.herokuapp.com/food/${props.activeId}`, {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': props.token
       })
     })
-    .then(() => props.fetchFoodTable())
+    .then(() => fetchFoodTable())
   }
 
   const fetchFoodTable = (() => {
     fetch('https://wd64-nutrition-app.herokuapp.com/food', {
       method: 'GET',
       headers: {
+        "Content-Type": "application/json",
         "Authorization": props.token
       }
       })
       .then(response => response.json())
-      .then(data => {
-        setLogs(data.result);
-        console.log(logs);
-      })
+      .then(data => setLogs(data.result))
       .catch(error => console.log(error));
       });
 
@@ -47,9 +47,17 @@ const FoodTableComponent = (props) => {
 
   return(
     <>
+    <Button style={{backgroundColor:'green'}} onClick={() => setAddModalOpen(true)}>Add Food</Button>
     {
       todaysLog.map(log => (
         <Log 
+          deleteFood={deleteFood}
+          fetchFoodTable={fetchFoodTable}
+          modalOpen={updateModalOpen}
+          setModalOpen={setUpdateModalOpen}
+          token={props.token}
+          activeId={log.id}
+          key={log.id}
           title={log.date_eaten} 
           name={log.name} 
           servings={log.servings} 
@@ -57,6 +65,7 @@ const FoodTableComponent = (props) => {
           meal={log.meal} />
       ))
     }
+    <FoodEntryComponent token={props.token} isOpen={addModalOpen} onClose={() => setAddModalOpen(false)} fetchFoodTable={fetchFoodTable}/>
     </>
   );
   

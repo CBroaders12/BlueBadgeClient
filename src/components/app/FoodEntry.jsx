@@ -47,7 +47,7 @@ const FoodEntryComponent = (props) => {
   }
 
   return(
-    <Modal isOpen={props.isOpen} onClose={props.onClose} className='Form'>
+    <Modal isOpen={props.isOpen} onClose={props.onClose}  className='Form'>
     <ModalHeader>Track Your Food!</ModalHeader>
     <ModalBody>
     <Form onSubmit={(e) => handleSubmit(e)}>
@@ -78,6 +78,7 @@ const FoodEntryComponent = (props) => {
           </Input>
       </FormGroup>
       <Button style={{backgroundColor:'green'}}>Track It!</Button>
+      <Button color='secondary' onClick={() => {onClose(); props.fetchFoodTable()}}>Cancel</Button>
     </Form>
     </ModalBody>
     </Modal>

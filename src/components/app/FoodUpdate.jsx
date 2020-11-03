@@ -47,7 +47,7 @@ const FoodUpdateComponent = (props) => {
   return(
     
     <Modal isOpen={props.isOpen} onClose={() => setModalOpen(false)} className='Form'>
-    <ModalHeader>Update Entry</ModalHeader>
+    <ModalHeader className='Modal'>Update Entry</ModalHeader>
     <ModalBody>
     <Form onSubmit={(e) => handleSubmit(e)}>
       <FormGroup>

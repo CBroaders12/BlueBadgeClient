@@ -11,7 +11,9 @@ const FoodTableComponent = (props) => {
   const [activeId, setActiveId] = useState(null);
   const [ updateModalOpen, setUpdateModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
-  const [ totalCals, setTotalCals] = useState(0);
+  const [ totalCals, setTotalCals] = useState('');
+
+  
 
   const deleteFood = (activeId) => {
     fetch(`http://wd64-nutrition-app.herokuapp.com/food/${activeId}`, {
@@ -89,12 +91,12 @@ const FoodTableComponent = (props) => {
           )
         })
       }
-      {/* <tfoot>
+      <tfoot>
         <tr>
-          <td colSpan="2">Total</td>
-          <td>{totalCals}</td>
+          <td colSpan="2">Totals</td>
+          <td>{addToTotalCals}</td>
         </tr>
-      </tfoot> */}
+      </tfoot>
     </Table>
     <FoodEntryComponent token={props.token} isOpen={addModalOpen} onClose={() => setAddModalOpen(false)} fetchFoodTable={fetchFoodTable}/>
     </>

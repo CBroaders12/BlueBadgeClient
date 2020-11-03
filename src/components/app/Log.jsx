@@ -18,7 +18,7 @@ const{setModalOpen} = props;
                 <td className="table-servings">{props.servings}</td>
                 <td className="table-calories">{props.calories}</td>
                 <td><Button color='warning' onClick={() => setModalOpen(true)}>Update</Button></td>
-                <td><Button color='danger' onClick={() => props.deleteFood(props.log)}>Delete</Button></td>
+                <td><Button color='danger' onClick={() => props.deleteFood(props.activeId)}>Delete</Button></td>
             </tr>
             </tbody>
             </table>

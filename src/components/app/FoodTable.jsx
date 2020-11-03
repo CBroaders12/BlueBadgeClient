@@ -12,8 +12,8 @@ const FoodTableComponent = (props) => {
   const [ updateModalOpen, setUpdateModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
 
-  const deleteFood = (log) => {
-    fetch(`http://wd64-nutrition-app.herokuapp.com/food/${props.activeId}`, {
+  const deleteFood = (activeId) => {
+    fetch(`http://wd64-nutrition-app.herokuapp.com/food/${activeId}`, {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',

@@ -1,6 +1,7 @@
 import React,  {useState} from 'react';
 import { Form, Label, FormGroup, Button, Input, Container } from 'reactstrap';
 import {Link} from 'react-router-dom';
+import NavigationComponent from '../app/Navbar';
 
 const LoginComponent = (props) => {
 
@@ -37,6 +38,7 @@ const LoginComponent = (props) => {
 
   return(
     <Container fluid="md">
+      <NavigationComponent/>
     <Form id='loginForm' className='Form' onSubmit={LoginSubmit}>
       <h4>Login</h4>
       <FormGroup>

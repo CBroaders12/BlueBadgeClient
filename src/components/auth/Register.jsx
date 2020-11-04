@@ -1,6 +1,7 @@
 import React,  { useState } from 'react';
 import { Form, Button, Input, FormGroup, Label } from 'reactstrap';
 import {Link} from 'react-router-dom';
+import NavigationComponent from '../app/Navbar';
 
 const RegisterComponent = (props) => {
 
@@ -45,6 +46,7 @@ const RegisterComponent = (props) => {
 
   return(
     <Form className='Form' id='registerForm' onSubmit={UserRegistration}>
+      <NavigationComponent/>
       <h4>Registration</h4>
       <FormGroup>
         <Label htmlFor='registerUserName'>Username:</Label>

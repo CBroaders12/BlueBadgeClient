@@ -8,11 +8,11 @@ const NavigationComponent = (props) => {
 
     return (
         <Navbar light expand="md" className='navbar'>
-            <NavbarBrand>Nutrition App</NavbarBrand>
+            <NavbarBrand style={{color: 'white'}}>Nutrition App</NavbarBrand>
             <NavbarToggler onClick={toggleNavbarMenu} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="ml-auto" navbar>
-                    <NavItem>
+                    {/* <NavItem>
                         <Link to="/foodentry">Food Entry</Link>
                     </NavItem>
                     <NavItem>
@@ -20,9 +20,9 @@ const NavigationComponent = (props) => {
                     </NavItem>
                     <NavItem>
                         <Link to="/foodupdate">Food Update</Link>
-                    </NavItem>
+                    </NavItem> */}
                     <NavItem>
-                        <Link to='login' onClick={props.clickLogout}>Logout</Link>
+                        <Link to='login' onClick={props.clickLogout} style={{color: 'white'}}>Logout</Link>
                     </NavItem>
                 </Nav>
             </Collapse>

@@ -1,5 +1,5 @@
 import React,  {useState} from 'react';
-import { Form, Label, FormGroup, Button, Input } from 'reactstrap';
+import { Form, Label, FormGroup, Button, Input, Container } from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 const LoginComponent = (props) => {
@@ -36,6 +36,7 @@ const LoginComponent = (props) => {
   };
 
   return(
+    <Container fluid="md">
     <Form id='loginForm' className='Form' onSubmit={LoginSubmit}>
       <h4>Login</h4>
       <FormGroup>
@@ -49,6 +50,7 @@ const LoginComponent = (props) => {
       <Button style={{backgroundColor:'green'}}>Login</Button>
       <p onClick={props.switchAuth}>Need to create an account? Click here to <Link to='register'>Register</Link></p>
     </Form>
+    </Container>
 
   );
 };

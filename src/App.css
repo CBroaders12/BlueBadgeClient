@@ -42,3 +42,13 @@ Input[type='date']{
 Input[type='select']{
   background-color: lightgrey;
 }
+
+Input[type='email']{
+  background-color: lightgrey;
+}
+
+Input[type='password']{
+  background-color: lightgrey;
+}
+
+

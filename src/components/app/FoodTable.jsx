@@ -77,7 +77,7 @@ const FoodTableComponent = (props) => {
   return(
     <>
     <Container fluid="md">
-      <Button style={{backgroundColor:'green'}} onClick={() => setAddModalOpen(true)} className="my-4">Add Food</Button>
+      <Button className='addFood' style={{backgroundColor:'green'}} onClick={() => setAddModalOpen(true)} className="my-4">Add Food</Button>
       <Table>
         <thead>
           <tr>

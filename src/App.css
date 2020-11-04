@@ -24,6 +24,21 @@ h6,
 
 .Modal{
   background-color: green;
+  
 }
 
+Input[type='integer']{
+  background-color: lightgrey;
+}
 
+Input[type='text']{
+  background-color: lightgrey;
+}
+
+Input[type='date']{
+  background-color: lightgrey;
+}
+
+Input[type='select']{
+  background-color: lightgrey;
+}

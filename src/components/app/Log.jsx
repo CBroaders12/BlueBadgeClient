@@ -4,6 +4,8 @@ import FoodUpdateComponent from './FoodUpdate';
 
 const Log = (props) => {
     const{setModalOpen} = props;
+
+
  
     return (
         <>

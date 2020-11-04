@@ -11,7 +11,13 @@ const FoodTableComponent = (props) => {
   const [activeId, setActiveId] = useState(null);
   const [ updateModalOpen, setUpdateModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
-  const [ totalCals, setTotalCals] = useState('');
+  const [ totalCals, setTotalCals] = useState(0);
+
+
+  //const calorieTotal = {props.calories}
+  
+
+  
 
   
 
@@ -58,6 +64,9 @@ const FoodTableComponent = (props) => {
 
   let todaysLog = logs.filter(key => key.date_eaten === todayLocal);
   let yesterdaysLog = logs.filter(key => key.date_eaten === yesterdayLocal);
+
+  console.log(todaysLog);
+  
 
   return(
     <>

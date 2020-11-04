@@ -47,11 +47,11 @@ const FoodUpdateComponent = (props) => {
   return(
     
     <Modal isOpen={props.isOpen} onClose={() => setModalOpen(false)} className='Form'>
-    <ModalHeader className='Modal'>Update Entry</ModalHeader>
+    <ModalHeader className='Modal' style={{color: 'white'}}>Update Entry</ModalHeader>
     <ModalBody>
     <Form onSubmit={(e) => handleSubmit(e)}>
       <FormGroup>
-        <Label htmlFor="name">Enter an ingredient:</Label>
+        <Label htmlFor="name">Food Name:</Label>
         <Input type="text" name="text" id="name" onChange={(e) => setName(e.target.value)} />
       </FormGroup>
       <FormGroup>
@@ -67,7 +67,7 @@ const FoodUpdateComponent = (props) => {
         <Input type="date" name="date" id="date_eaten" pattern="[0-9]{8}" onChange={(e) => setDate_eaten(e.target.value)} />
       </FormGroup>
       <FormGroup>
-        <Label htmlFor="meal">Enter a meal ID:</Label>
+        <Label htmlFor="meal">Type of Meal:</Label>
         <Input type="select" name="meal" id="meal" onChange={(e) => setMeal(e.target.value)}>
           <option></option>
           <option value="Breakfast">Breakfast</option>

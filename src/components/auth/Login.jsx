@@ -36,7 +36,7 @@ const LoginComponent = (props) => {
   };
 
   return(
-    <Container fluid="md">
+    <Container fluid="md" className="d-flex align-content-center" style={{height: '100vh'}}>
     <Form id='loginForm' className='Form' onSubmit={LoginSubmit}>
       <h4>Login</h4>
       <FormGroup>

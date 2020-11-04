@@ -12,18 +12,10 @@ const FoodTableComponent = (props) => {
   const [ updateModalOpen, setUpdateModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [ totalCals, setTotalCals] = useState(0);
+  const [dayLog, setDayLog] = useState(0);
 
 
   //const calorieTotal = {props.calories}
-  
-
-  
-
-
-  
-  
-
-  
 
   
 
@@ -55,6 +47,9 @@ const FoodTableComponent = (props) => {
   useEffect(() => {
     fetchFoodTable();
   }, [])
+  useEffect(() => {
+    fetchFoodTable();
+  }, [setDayLog])
 
   // Get today's dat in UTC and calculate local offset
   let todayUTC = new Date()/*.toISOString().slice(0, 10);*/
@@ -62,11 +57,11 @@ const FoodTableComponent = (props) => {
   let localTime = todayUTC - offset;
   
   // Create YYYY-MM-DD strings for days
-  let todayLocal = new Date(localTime).toISOString().slice(0,10);
-  let yesterdayLocal = new Date(localTime - 1 * 86400000).toISOString().split('T')[0];
+  //let todayLocal = new Date(localTime).toISOString().slice(0,10);
+  let todayLocal = new Date(localTime - dayLog * 86400000).toISOString().split('T')[0];
 
+  //let todaysLog = logs.filter(key => key.date_eaten === todayLocal);
   let todaysLog = logs.filter(key => key.date_eaten === todayLocal);
-  let yesterdaysLog = logs.filter(key => key.date_eaten === yesterdayLocal);
 
   
 
@@ -113,6 +108,8 @@ const FoodTableComponent = (props) => {
             <td>{calTotal}</td>
             <td></td>
           </tr>
+          <tr><td><Button onClick={() => setDayLog(dayLog + 1)}>Click for Yesterday</Button></td>
+          <td><Button onClick={() => setDayLog(dayLog -1)}>Click for Tomorrow</Button></td></tr>
         </tfoot>
       </Table>
     </Container>

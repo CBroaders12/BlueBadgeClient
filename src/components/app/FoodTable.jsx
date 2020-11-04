@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react';
-import { Button, Table } from 'reactstrap';
+import { Button, Table, Container } from 'reactstrap';
 import Log from './Log';
 import FoodUpdateComponent from './FoodUpdate';
 import FoodEntryComponent from './FoodEntry';
@@ -61,43 +61,46 @@ const FoodTableComponent = (props) => {
 
   return(
     <>
-    <Button style={{backgroundColor:'green'}} onClick={() => setAddModalOpen(true)}>Add Food</Button>
-    <Table>
-      <thead>
-        <tr>
-          <th>Food</th>
-          <th>Servings</th>
-          <th>Calories</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      {
-        todaysLog.map(log => {
-          return(
-          <Log 
-            deleteFood={deleteFood}
-            fetchFoodTable={fetchFoodTable}
-            modalOpen={updateModalOpen}
-            setModalOpen={setUpdateModalOpen}
-            token={props.token}
-            activeId={log.id}
-            key={log.id}
-            title={log.date_eaten} 
-            name={log.name} 
-            servings={log.servings} 
-            calories={log.calories} 
-            meal={log.meal} />
-          )
-        })
-      }
-      <tfoot>
-        <tr>
-          <td colSpan="2">Totals</td>
-          <td>{addToTotalCals}</td>
-        </tr>
-      </tfoot>
-    </Table>
+    <Container fluid="md">
+      <Button style={{backgroundColor:'green'}} onClick={() => setAddModalOpen(true)} className="my-4">Add Food</Button>
+      <Table>
+        <thead>
+          <tr>
+            <th>Food</th>
+            <th>Servings</th>
+            <th>Calories</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        {
+          todaysLog.map(log => {
+            return(
+            <Log 
+              deleteFood={deleteFood}
+              fetchFoodTable={fetchFoodTable}
+              modalOpen={updateModalOpen}
+              setModalOpen={setUpdateModalOpen}
+              token={props.token}
+              activeId={log.id}
+              key={log.id}
+              title={log.date_eaten} 
+              name={log.name} 
+              servings={log.servings} 
+              calories={log.calories} 
+              meal={log.meal} />
+            )
+          })
+        }
+        <tfoot>
+          <tr>
+            <td colSpan="2">Total</td>
+            <td>{totalCals}</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </Table>
+    </Container>
     <FoodEntryComponent token={props.token} isOpen={addModalOpen} onClose={() => setAddModalOpen(false)} fetchFoodTable={fetchFoodTable}/>
     </>
   );

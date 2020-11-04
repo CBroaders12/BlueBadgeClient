@@ -11,7 +11,13 @@ const FoodTableComponent = (props) => {
   const [activeId, setActiveId] = useState(null);
   const [ updateModalOpen, setUpdateModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
-  const [ totalCals, setTotalCals] = useState('');
+  const [ totalCals, setTotalCals] = useState(0);
+
+
+  //const calorieTotal = {props.calories}
+  
+
+  
 
 
   

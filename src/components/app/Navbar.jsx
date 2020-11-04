@@ -12,17 +12,8 @@ const NavigationComponent = (props) => {
             <NavbarToggler onClick={toggleNavbarMenu} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="ml-auto" navbar>
-                    {/* <NavItem>
-                        <Link to="/foodentry">Food Entry</Link>
-                    </NavItem>
                     <NavItem>
-                        <Link to='/table/:id'>Food Table</Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link to="/foodupdate">Food Update</Link>
-                    </NavItem> */}
-                    <NavItem>
-                        <Link to='login' onClick={props.clickLogout} style={{color: 'white'}}>Logout</Link>
+                        <Link to='/' onClick={props.clickLogout} style={{color: 'white'}}>Logout</Link>
                     </NavItem>
                 </Nav>
             </Collapse>

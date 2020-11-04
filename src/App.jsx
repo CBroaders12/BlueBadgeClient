@@ -45,15 +45,9 @@ function App() {
         <div className="App">
           <NavigationComponent clickLogout={clickLogout} isLoggedIn={token} />
           <Switch>
-            <Route exact path="/foodentry">
-              <FoodEntryComponent token={token} />
+            <Route exact path='/'>
+              <FoodTableComponent token={token}/>
             </Route>
-            <Route exact path='/foodupdate'>
-              <FoodUpdateComponent token={token}/>
-            </Route>
-              <Route exact path='/table/:id'>
-                <FoodTableComponent token={token}/>
-              </Route>
           </Switch>
         </div>
       </BrowserRouter>

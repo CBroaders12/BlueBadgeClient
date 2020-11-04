@@ -1,5 +1,5 @@
 import React,  { useState } from 'react';
-import { Form, Button, Input, FormGroup, Label } from 'reactstrap';
+import { Form, Button, Input, FormGroup, Label, Container } from 'reactstrap';
 import {Link} from 'react-router-dom';
 import NavigationComponent from '../app/Navbar';
 
@@ -45,28 +45,32 @@ const RegisterComponent = (props) => {
   };
 
   return(
-    <Form className='Form' id='registerForm' onSubmit={UserRegistration}>
-      <NavigationComponent/>
-      <h4>Registration</h4>
-      <FormGroup>
-        <Label htmlFor='registerUserName'>Username:</Label>
-        <Input id='registerUserName' type='text' name='registerUserName' onChange={userInputChange}/>
-      </FormGroup>
-      <FormGroup>
-        <Label htmlFor='registerEmail'>Email:</Label>
-        <Input id='registerEmail' type='email' name='registerEmail' onChange={emailInputChange}></Input>
-      </FormGroup>
-      <FormGroup>
-        <Label htmlFor='registerPassword'>Password:</Label>
-        <Input id='registerPassword' type='password' name='registerPassword' onChange={passwordInputChange}></Input>
-      </FormGroup>
-      <FormGroup>
-        <Label htmlFor='registerConfirmPassword'>Confirm Password:</Label>
-        <Input id='registerConfirmPassword' type='password' name='registerConfirmPassword' onChange={passwordConfirmInputChange}></Input>
-      </FormGroup>
-      <Button style={{backgroundColor:'green'}}>Register</Button>
-      <p onClick={props.switchAuth}>Already have an account? Click here to <Link to='register'>Login</Link></p>
-    </Form>
+    <>
+    <NavigationComponent/>
+    <Container fluid="md" className="d-flex align-content-center" style={{height: '100vh'}}>
+      <Form className='Form' id='registerForm' onSubmit={UserRegistration}>
+        <h4>Registration</h4>
+        <FormGroup>
+          <Label htmlFor='registerUserName'>Username:</Label>
+          <Input id='registerUserName' type='text' name='registerUserName' onChange={userInputChange}/>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor='registerEmail'>Email:</Label>
+          <Input id='registerEmail' type='email' name='registerEmail' onChange={emailInputChange}></Input>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor='registerPassword'>Password:</Label>
+          <Input id='registerPassword' type='password' name='registerPassword' onChange={passwordInputChange}></Input>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor='registerConfirmPassword'>Confirm Password:</Label>
+          <Input id='registerConfirmPassword' type='password' name='registerConfirmPassword' onChange={passwordConfirmInputChange}></Input>
+        </FormGroup>
+        <Button style={{backgroundColor:'green'}}>Register</Button>
+        <p onClick={props.switchAuth}>Already have an account? Click here to <Link to='register'>Login</Link></p>
+      </Form>
+    </Container>
+    </>
   );
 };
 

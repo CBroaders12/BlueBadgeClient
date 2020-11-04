@@ -28,6 +28,11 @@ h6,
   
 }
 
+th {
+  background: green;
+  color: white;
+}
+
 Input[type='integer']{
   background-color: lightgrey;
 }

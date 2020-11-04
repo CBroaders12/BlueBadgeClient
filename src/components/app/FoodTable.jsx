@@ -12,18 +12,10 @@ const FoodTableComponent = (props) => {
   const [ updateModalOpen, setUpdateModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
   const [ totalCals, setTotalCals] = useState(0);
+  const [dayLog, setDayLog] = useState(0);
 
 
   //const calorieTotal = {props.calories}
-  
-
-  
-
-
-  
-  
-
-  
 
   
 
@@ -55,6 +47,9 @@ const FoodTableComponent = (props) => {
   useEffect(() => {
     fetchFoodTable();
   }, [])
+  useEffect(() => {
+    fetchFoodTable();
+  }, [setDayLog])
 
   // Get today's dat in UTC and calculate local offset
   let todayUTC = new Date()/*.toISOString().slice(0, 10);*/
@@ -62,16 +57,22 @@ const FoodTableComponent = (props) => {
   let localTime = todayUTC - offset;
   
   // Create YYYY-MM-DD strings for days
-  let todayLocal = new Date(localTime).toISOString().slice(0,10);
-  let yesterdayLocal = new Date(localTime - 1 * 86400000).toISOString().split('T')[0];
+  //let todayLocal = new Date(localTime).toISOString().slice(0,10);
+  let todayLocal = new Date(localTime - dayLog * 86400000).toISOString().split('T')[0];
 
+  //let todaysLog = logs.filter(key => key.date_eaten === todayLocal);
   let todaysLog = logs.filter(key => key.date_eaten === todayLocal);
-  let yesterdaysLog = logs.filter(key => key.date_eaten === yesterdayLocal);
 
-  
+  let todaysBreakfast = todaysLog.filter(key => key.meal === "Breakfast");
+  let todaysLunch = todaysLog.filter(key => key.meal === "Lunch");
+  let todaysDinner = todaysLog.filter(key => key.meal === "Dinner");
+  let todaysSnack = todaysLog.filter(key => key.meal === "Snack");
 
-  const calTotal = todaysLog.reduce((totalCalories, today) => totalCalories + today.calories, 0)
-  
+  const calTotal = todaysLog.reduce((totalCalories, today) => totalCalories + today.calories, 0);
+  const breakfastTotal = todaysBreakfast.reduce((totalCalories, breakfast) => totalCalories + breakfast.calories, 0);
+  const lunchTotal = todaysLunch.reduce((totalCalories, lunch) => totalCalories + lunch.calories, 0);
+  const dinnerTotal = todaysDinner.reduce((totalCalories, dinner) => totalCalories + dinner.calories, 0);
+  const snackTotal = todaysSnack.reduce((totalCalories, snack) => totalCalories + snack.calories, 0);
   
 
   return(
@@ -88,31 +89,116 @@ const FoodTableComponent = (props) => {
             <th></th>
           </tr>
         </thead>
-        {
-          todaysLog.map(log => {
-            return(
-            <Log 
-              deleteFood={deleteFood}
-              fetchFoodTable={fetchFoodTable}
-              modalOpen={updateModalOpen}
-              setModalOpen={setUpdateModalOpen}
-              token={props.token}
-              activeId={log.id}
-              key={log.id}
-              title={log.date_eaten} 
-              name={log.name} 
-              servings={log.servings} 
-              calories={log.calories} 
-              meal={log.meal} />
-            )
-          })
-        }
+        <tbody>
+          <tr>
+            <th colSpan="2">Breakfast</th>
+            <th>{breakfastTotal}</th>
+            <th></th>
+            <th></th>
+          </tr>
+            {
+              todaysBreakfast.map(log => {
+                return(
+                  <Log 
+                    deleteFood={deleteFood}
+                    fetchFoodTable={fetchFoodTable}
+                    modalOpen={updateModalOpen}
+                    setModalOpen={setUpdateModalOpen}
+                    token={props.token}
+                    activeId={log.id}
+                    key={log.id}
+                    title={log.date_eaten} 
+                    name={log.name} 
+                    servings={log.servings} 
+                    calories={log.calories} 
+                    meal={log.meal} />
+                )
+              })
+            }
+          <tr>
+            <th colSpan="2">Lunch</th>
+            <th>{lunchTotal}</th>
+            <th></th>
+            <th></th>
+          </tr>
+          {
+            todaysLunch.map(log => {
+              return(
+                <Log 
+                  deleteFood={deleteFood}
+                  fetchFoodTable={fetchFoodTable}
+                  modalOpen={updateModalOpen}
+                  setModalOpen={setUpdateModalOpen}
+                  token={props.token}
+                  activeId={log.id}
+                  key={log.id}
+                  title={log.date_eaten} 
+                  name={log.name} 
+                  servings={log.servings} 
+                  calories={log.calories} 
+                  meal={log.meal} />
+              )
+            })
+          }
+          <tr>
+            <th colSpan="2">Dinner</th>
+            <th>{dinnerTotal}</th>
+            <th></th>
+            <th></th>
+          </tr>
+          {
+            todaysDinner.map(log => {
+              return(
+                <Log 
+                  deleteFood={deleteFood}
+                  fetchFoodTable={fetchFoodTable}
+                  modalOpen={updateModalOpen}
+                  setModalOpen={setUpdateModalOpen}
+                  token={props.token}
+                  activeId={log.id}
+                  key={log.id}
+                  title={log.date_eaten} 
+                  name={log.name} 
+                  servings={log.servings} 
+                  calories={log.calories} 
+                  meal={log.meal} />
+              )
+            })
+          }
+          <tr>
+            <th colSpan="2">Snack</th>
+            <th>{snackTotal}</th>
+            <th></th>
+            <th></th>
+          </tr>
+          {
+            todaysSnack.map(log => {
+              return(
+                <Log 
+                  deleteFood={deleteFood}
+                  fetchFoodTable={fetchFoodTable}
+                  modalOpen={updateModalOpen}
+                  setModalOpen={setUpdateModalOpen}
+                  token={props.token}
+                  activeId={log.id}
+                  key={log.id}
+                  title={log.date_eaten} 
+                  name={log.name} 
+                  servings={log.servings} 
+                  calories={log.calories} 
+                  meal={log.meal} />
+              )
+            })
+          }
+        </tbody>
         <tfoot>
           <tr>
             <td colSpan="2">Total</td>
             <td>{calTotal}</td>
             <td></td>
           </tr>
+          <tr><td><Button onClick={() => setDayLog(dayLog + 1)}>Click for Yesterday</Button></td>
+          <td><Button onClick={() => setDayLog(dayLog -1)}>Click for Tomorrow</Button></td></tr>
         </tfoot>
       </Table>
     </Container>

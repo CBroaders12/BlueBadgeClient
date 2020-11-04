@@ -37,7 +37,7 @@ const FoodEntryComponent = (props) => {
     fetch(`${baseUrl}${name}${apiId}${apiKey}`)
     .then(response => response.json())
     .then(data => {
-      let caloriesReturned = data.hints[0].food.nutrients.ENERC_KCAL * servings;
+      let caloriesReturned = Math.round(data.hints[0].food.nutrients.ENERC_KCAL * servings);
       let postData = {name: name, description: description, servings: servings, calories: caloriesReturned, date_eaten: date_eaten, meal: meal};
       postFood(postData);
       //setCarbs(data.hints[0].food.nutrients.CHOCDF) 

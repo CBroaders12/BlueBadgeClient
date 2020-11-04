@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useReducer} from 'react';
 import { Button, Table, Container } from 'reactstrap';
 import Log from './Log';
 import FoodUpdateComponent from './FoodUpdate';
@@ -11,10 +11,10 @@ const FoodTableComponent = (props) => {
   const [activeId, setActiveId] = useState(null);
   const [ updateModalOpen, setUpdateModalOpen] = useState(false);
   const [addModalOpen, setAddModalOpen] = useState(false);
-  const [ totalCals, setTotalCals] = useState(0);
+  const [ totalCals, setTotalCals] = useState('');
 
 
-  //const calorieTotal = {props.calories}
+  
   
 
   
@@ -32,10 +32,7 @@ const FoodTableComponent = (props) => {
     .then(() => fetchFoodTable())
   }
 
-  const addToTotalCals = (addedCals) => {
-    setTotalCals(totalCals + addedCals);
-  }
-
+  
   const fetchFoodTable = (() => {
     fetch('https://wd64-nutrition-app.herokuapp.com/food', {
       method: 'GET',
@@ -65,7 +62,10 @@ const FoodTableComponent = (props) => {
   let todaysLog = logs.filter(key => key.date_eaten === todayLocal);
   let yesterdaysLog = logs.filter(key => key.date_eaten === yesterdayLocal);
 
-  console.log(todaysLog);
+  
+
+  const calTotal = todaysLog.reduce((totalCalories, today) => totalCalories + today.calories, 0)
+  console.log(calTotal)
   
 
   return(
@@ -104,7 +104,7 @@ const FoodTableComponent = (props) => {
         <tfoot>
           <tr>
             <td colSpan="2">Total</td>
-            <td>{totalCals}</td>
+            <td>{calTotal}</td>
             <td></td>
           </tr>
         </tfoot>

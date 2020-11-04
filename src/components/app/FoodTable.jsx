@@ -71,7 +71,7 @@ const FoodTableComponent = (props) => {
   
 
   const calTotal = todaysLog.reduce((totalCalories, today) => totalCalories + today.calories, 0)
-  console.log(calTotal)
+  
   
 
   return(

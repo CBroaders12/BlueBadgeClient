@@ -15,6 +15,7 @@ h5,
 h6,
 .btn {
   font-family: "Bubbler One";
+
 }
 
 .navbar{
@@ -49,6 +50,14 @@ Input[type='email']{
 
 Input[type='password']{
   background-color: lightgrey;
+}
+
+h4{
+  text-align: center;
+}
+
+p{
+  text-align: center;
 }
 
 

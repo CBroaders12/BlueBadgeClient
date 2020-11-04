@@ -22,7 +22,7 @@ const NavigationComponent = (props) => {
                         <Link to="/foodupdate">Food Update</Link>
                     </NavItem> */}
                     <NavItem>
-                        <Link to='login' onClick={props.clickLogout} style={{color: 'white'}}>Logout</Link>
+                        <Link to='/' onClick={props.clickLogout} style={{color: 'white'}}>Logout</Link>
                     </NavItem>
                 </Nav>
             </Collapse>

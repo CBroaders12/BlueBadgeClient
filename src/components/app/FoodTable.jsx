@@ -20,7 +20,7 @@ const FoodTableComponent = (props) => {
   
 
   const deleteFood = (activeId) => {
-    fetch(`https://wd64-nutrition-app.herokuapp.com/food/${activeId}`, {
+    fetch(`http://localhost:5200/food/${activeId}`, {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const FoodTableComponent = (props) => {
 
   
   const fetchFoodTable = (() => {
-    fetch('https://wd64-nutrition-app.herokuapp.com/food', {
+    fetch('http://localhost:5200/food', {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",
@@ -74,6 +74,24 @@ const FoodTableComponent = (props) => {
   const dinnerTotal = todaysDinner.reduce((totalCalories, dinner) => totalCalories + dinner.calories, 0);
   const snackTotal = todaysSnack.reduce((totalCalories, snack) => totalCalories + snack.calories, 0);
   
+  const proteinTotal = todaysLog.reduce((totalProtein, today) => totalProtein + today.protein_in_grams, 0);
+  const breakfastProtein = todaysBreakfast.reduce((totalProtein, breakfast) => totalProtein + breakfast.protein_in_grams, 0);
+  const lunchProtein = todaysLunch.reduce((totalProtein, lunch) => totalProtein + lunch.protein_in_grams, 0);
+  const dinnerProtein = todaysDinner.reduce((totalProtein, dinner) => totalProtein + dinner.protein_in_grams, 0);
+  const snackProtein = todaysSnack.reduce((totalProtein, snack) => totalProtein + snack.protein_in_grams, 0);
+  
+  const carbsTotal = todaysLog.reduce((totalCarbs, today) => totalCarbs + today.carbs_in_grams, 0);
+  const breakfastCarbs = todaysBreakfast.reduce((totalCarbs, breakfast) => totalCarbs + breakfast.carbs_in_grams, 0);
+  const lunchCarbs = todaysLunch.reduce((totalCarbs, lunch) => totalCarbs + lunch.carbs_in_grams, 0);
+  const dinnerCarbs = todaysDinner.reduce((totalCarbs, dinner) => totalCarbs + dinner.carbs_in_grams, 0);
+  const snackCarbs = todaysSnack.reduce((totalCarbs, snack) => totalCarbs + snack.carbs_in_grams, 0);
+  
+  const fatTotal = todaysLog.reduce((totalFat, today) => totalFat + today.fat_in_grams, 0);
+  const breakfastFat = todaysBreakfast.reduce((totalFat, breakfast) => totalFat + breakfast.fat_in_grams, 0);
+  const lunchFat = todaysLunch.reduce((totalFat, lunch) => totalFat + lunch.fat_in_grams, 0);
+  const dinnerFat = todaysDinner.reduce((totalFat, dinner) => totalFat + dinner.fat_in_grams, 0);
+  const snackFat = todaysSnack.reduce((totalFat, snack) => totalFat + snack.fat_in_grams, 0);
+  
 
   return(
     <>
@@ -86,16 +104,19 @@ const FoodTableComponent = (props) => {
             <th>Food</th>
             <th>Servings</th>
             <th>Calories</th>
-            <th>Carbs</th>
-            <th>Protein</th>
-            <th>Fats</th>
+            <th>Carbs (g)</th>
+            <th>Protein (g)</th>
+            <th>Fats (g)</th>
+            <th>Edit Entries</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th colSpan="2">Breakfast</th>
             <th>{breakfastTotal}</th>
-            <th></th>
+            <th>{breakfastCarbs}</th>
+            <th>{breakfastProtein}</th>
+            <th>{breakfastFat}</th>
             <th></th>
           </tr>
             {
@@ -123,7 +144,9 @@ const FoodTableComponent = (props) => {
           <tr>
             <th colSpan="2">Lunch</th>
             <th>{lunchTotal}</th>
-            <th></th>
+            <th>{lunchCarbs}</th>
+            <th>{lunchProtein}</th>
+            <th>{lunchFat}</th>
             <th></th>
           </tr>
           {
@@ -151,7 +174,9 @@ const FoodTableComponent = (props) => {
           <tr>
             <th colSpan="2">Dinner</th>
             <th>{dinnerTotal}</th>
-            <th></th>
+            <th>{dinnerCarbs}</th>
+            <th>{dinnerProtein}</th>
+            <th>{dinnerFat}</th>
             <th></th>
           </tr>
           {
@@ -179,7 +204,9 @@ const FoodTableComponent = (props) => {
           <tr>
             <th colSpan="2">Snack</th>
             <th>{snackTotal}</th>
-            <th></th>
+            <th>{snackCarbs}</th>
+            <th>{snackProtein}</th>
+            <th>{snackFat}</th>
             <th></th>
           </tr>
           {
@@ -209,10 +236,10 @@ const FoodTableComponent = (props) => {
           <tr>
             <td colSpan="2">Total</td>
             <td>{calTotal}</td>
-            <td></td>
+            <td>{carbsTotal}</td>
+            <td>{proteinTotal}</td>
+            <td>{fatTotal}</td>
           </tr>
-          <tr><td><Button onClick={() => setDayLog(dayLog + 1)}>Click for Yesterday</Button></td>
-          <td><Button onClick={() => setDayLog(dayLog -1)}>Click for Tomorrow</Button></td></tr>
         </tfoot>
       </Table>
       <Button className="yesterday" onClick={() => setDayLog(dayLog + 1)}>&#x3C;&#x3C;</Button>

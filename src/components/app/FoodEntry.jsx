@@ -21,7 +21,7 @@ const FoodEntryComponent = (props) => {
   
   const postFood = (data) => {
     
-    fetch('https://wd64-nutrition-app.herokuapp.com/food', {
+    fetch('http://localhost:5200/food', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: new Headers ({
@@ -60,10 +60,6 @@ const FoodEntryComponent = (props) => {
       <FormGroup>
         <Label htmlFor="name">Enter a Food:</Label>
         <Input type="text" name="text" id="name" onChange={(e) => setName(e.target.value)} />
-      </FormGroup>
-      <FormGroup>
-        <Label htmlFor="description">Enter a description:</Label>
-        <Input type="text" name="text" id="description" onChange={(e) => setDescription(e.target.value)} />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="servings">Enter Servings:</Label>

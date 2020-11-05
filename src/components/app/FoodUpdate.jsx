@@ -38,7 +38,10 @@ const FoodUpdateComponent = (props) => {
     .then(response => response.json())
     .then(data => {
       let caloriesReturned = data.hints[0].food.nutrients.ENERC_KCAL * servings;
-      let postData = {name: name, description: description, servings: servings, calories: caloriesReturned, date_eaten: date_eaten, meal: meal}
+      let proteinReturned = data.hints[0].food.nutrients.PROCNT * servings;
+      let carbsReturned = data.hints[0].food.nutrients.CHOCDF * servings;
+      let fatReturned = data.hints[0].food.nutrients.FAT * servings;
+      let postData = {name: name, servings: servings, calories: caloriesReturned, date_eaten: date_eaten, meal: meal, protein_in_grams: proteinReturned, carbs_in_grams: carbsReturned, fat_in_grams: fatReturned}
       postFood(postData);
       setCarbs(data.hints[0].food.nutrients.CHOCDF) 
       setFat(data.hints[0].food.nutrients.FAT) 

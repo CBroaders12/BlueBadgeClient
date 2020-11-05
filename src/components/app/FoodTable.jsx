@@ -114,9 +114,9 @@ const FoodTableComponent = (props) => {
                     servings={log.servings} 
                     calories={log.calories} 
                     meal={log.meal}
-                    fat={log.fat}
-                    protein={log.protein}
-                    carbs={log.carbs} />
+                    fat={log.fat_in_grams}
+                    protein={log.protein_in_grams}
+                    carbs={log.carbs_in_grams} />
                 )
               })
             }
@@ -142,9 +142,9 @@ const FoodTableComponent = (props) => {
                   servings={log.servings} 
                   calories={log.calories} 
                   meal={log.meal}
-                  fat={log.fat}
-                  protein={log.protein}
-                  carbs={log.carbs} />
+                  fat={log.fat_in_grams}
+                  protein={log.protein_in_grams}
+                  carbs={log.carbs_in_grams} />
               )
             })
           }
@@ -170,9 +170,9 @@ const FoodTableComponent = (props) => {
                   servings={log.servings} 
                   calories={log.calories} 
                   meal={log.meal}
-                  fat={log.fat}
-                  protein={log.protein}
-                  carbs={log.carbs} />
+                  fat={log.fat_in_grams}
+                  protein={log.protein_in_grams}
+                  carbs={log.carbs_in_grams} />
               )
             })
           }
@@ -198,9 +198,9 @@ const FoodTableComponent = (props) => {
                   servings={log.servings} 
                   calories={log.calories} 
                   meal={log.meal}
-                  fat={log.fat}
-                  protein={log.protein}
-                  carbs={log.carbs} />
+                  fat={log.fat_in_grams}
+                  protein={log.protein_in_grams}
+                  carbs={log.carbs_in_grams} />
               )
             })
           }

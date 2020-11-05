@@ -21,7 +21,7 @@ const FoodEntryComponent = (props) => {
   
   const postFood = (data) => {
     
-    fetch('http://localhost:5200/food', {
+    fetch('https://wd64-nutrition-app.herokuapp.com/food', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: new Headers ({

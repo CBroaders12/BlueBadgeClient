@@ -20,7 +20,7 @@ const FoodTableComponent = (props) => {
   
 
   const deleteFood = (activeId) => {
-    fetch(`http://localhost:5200/food/${activeId}`, {
+    fetch(`https://wd64-nutrition-app.herokuapp.com/food/${activeId}`, {
       method: 'DELETE',
       headers: new Headers({
         'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const FoodTableComponent = (props) => {
 
   
   const fetchFoodTable = (() => {
-    fetch('http://localhost:5200/food', {
+    fetch('https://wd64-nutrition-app.herokuapp.com/food', {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",

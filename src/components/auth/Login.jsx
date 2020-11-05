@@ -45,13 +45,15 @@ const LoginComponent = (props) => {
       <FormGroup>
         <Label htmlFor='username'>Username:</Label>
         <Input onChange={userNameChange} value={username} id='username' type='text' name='text'></Input>
+        {username.length && username.length < 4 ? <span>Must be 4 or more characters</span> : null}
       </FormGroup>
       <FormGroup>
         <Label htmlFor='password'>Password:</Label>
         <Input onChange={passwordChange} value={password} id='password' type='password' name='password'></Input>
+        {password.length && password.length < 5 ? <span>Password must be 5 or more characters</span> : null}
       </FormGroup>
-      <Button style={{backgroundColor:'green'}}>Login</Button>
-      <p onClick={props.switchAuth}>Need to create an account? Click here to <Link to='register'>Register</Link></p>
+      <Button disabled={!username || !password || username.length < 4} style={{backgroundColor:'green'}}>Login</Button>
+      <p onClick={props.switchAuth}>Need to create an account? Click here to <Link to='/register'>Register</Link></p>
     </Form>
     </Container>
     </>

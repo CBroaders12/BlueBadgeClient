@@ -34,7 +34,8 @@ const RegisterComponent = (props) => {
           })
 
         }).then(response => response.json())
-          .then(() => {
+          .then((body) => {
+            props.authenticateUser(body.token);
             console.log('user is registered');
           })
           .catch(error => console.log(error));
@@ -61,13 +62,14 @@ const RegisterComponent = (props) => {
         <FormGroup>
           <Label htmlFor='registerPassword'>Password:</Label>
           <Input id='registerPassword' type='password' name='registerPassword' onChange={passwordInputChange}></Input>
+          {password.length && password.length < 5 ? <span>Password must be 5 characters</span> : null}
         </FormGroup>
         <FormGroup>
           <Label htmlFor='registerConfirmPassword'>Confirm Password:</Label>
           <Input id='registerConfirmPassword' type='password' name='registerConfirmPassword' onChange={passwordConfirmInputChange}></Input>
         </FormGroup>
-        <Button style={{backgroundColor:'green'}}>Register</Button>
-        <p onClick={props.switchAuth}>Already have an account? Click here to <Link to='register'>Login</Link></p>
+        <Button disabled={!username || !password || !email || !passwordConfirm || password.length < 5 } style={{backgroundColor:'green'}}>Register</Button>
+        <p onClick={props.switchAuth}>Already have an account? Click here to <Link to='login'>Login</Link></p>
       </Form>
     </Container>
     </>

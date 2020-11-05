@@ -8,6 +8,7 @@ html {
 }
 
 
+Label,
 p,
 h1,
 h2,
@@ -58,4 +59,7 @@ Input[type='password']{
   background-color: lightgrey;
 }
 
-
+Label,
+p{
+  font-weight: bold;
+}

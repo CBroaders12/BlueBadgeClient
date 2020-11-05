@@ -79,14 +79,16 @@ const FoodTableComponent = (props) => {
     <>
     <Container fluid="md">
       <Button className='addFood' style={{backgroundColor:'green'}} onClick={() => setAddModalOpen(true)} className="my-4">Add Food</Button>
+      <h1>{todayLocal}</h1>
       <Table>
         <thead>
           <tr>
             <th>Food</th>
             <th>Servings</th>
             <th>Calories</th>
-            <th></th>
-            <th></th>
+            <th>Carbs</th>
+            <th>Protein</th>
+            <th>Fats</th>
           </tr>
         </thead>
         <tbody>
@@ -111,7 +113,10 @@ const FoodTableComponent = (props) => {
                     name={log.name} 
                     servings={log.servings} 
                     calories={log.calories} 
-                    meal={log.meal} />
+                    meal={log.meal}
+                    fat={log.fat}
+                    protein={log.protein}
+                    carbs={log.carbs} />
                 )
               })
             }
@@ -136,7 +141,10 @@ const FoodTableComponent = (props) => {
                   name={log.name} 
                   servings={log.servings} 
                   calories={log.calories} 
-                  meal={log.meal} />
+                  meal={log.meal}
+                  fat={log.fat}
+                  protein={log.protein}
+                  carbs={log.carbs} />
               )
             })
           }
@@ -161,7 +169,10 @@ const FoodTableComponent = (props) => {
                   name={log.name} 
                   servings={log.servings} 
                   calories={log.calories} 
-                  meal={log.meal} />
+                  meal={log.meal}
+                  fat={log.fat}
+                  protein={log.protein}
+                  carbs={log.carbs} />
               )
             })
           }
@@ -186,7 +197,10 @@ const FoodTableComponent = (props) => {
                   name={log.name} 
                   servings={log.servings} 
                   calories={log.calories} 
-                  meal={log.meal} />
+                  meal={log.meal}
+                  fat={log.fat}
+                  protein={log.protein}
+                  carbs={log.carbs} />
               )
             })
           }
@@ -201,6 +215,8 @@ const FoodTableComponent = (props) => {
           <td><Button onClick={() => setDayLog(dayLog -1)}>Click for Tomorrow</Button></td></tr>
         </tfoot>
       </Table>
+      <Button className="yesterday" onClick={() => setDayLog(dayLog + 1)}>&#x3C;&#x3C;</Button>
+      <Button className="tomorrow" onClick={() => setDayLog(dayLog -1)}>&#x3E;&#x3E;</Button>
     </Container>
     <FoodEntryComponent token={props.token} isOpen={addModalOpen} onClose={() => setAddModalOpen(false)} fetchFoodTable={fetchFoodTable}/>
     </>

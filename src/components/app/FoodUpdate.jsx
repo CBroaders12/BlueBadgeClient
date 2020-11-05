@@ -9,6 +9,9 @@ const FoodUpdateComponent = (props) => {
   const [calories, setCalories] = useState('');
   const [date_eaten, setDate_eaten] = useState('');
   const [meal, setMeal] = useState('snack');
+  const [carbs, setCarbs] = useState('');
+  const [protein, setProtein] = useState('');
+  const [fat, setFat] = useState('');
   
   const{setModalOpen} = props;
     
@@ -37,9 +40,9 @@ const FoodUpdateComponent = (props) => {
       let caloriesReturned = data.hints[0].food.nutrients.ENERC_KCAL * servings;
       let postData = {name: name, description: description, servings: servings, calories: caloriesReturned, date_eaten: date_eaten, meal: meal}
       postFood(postData);
-      //setCarbs(data.hints[0].food.nutrients.CHOCDF) 
-      //setFat(data.hints[0].food.nutrients.FAT) 
-      //setProtein(data.hints[0].food.nutrients.PROCNT) 
+      setCarbs(data.hints[0].food.nutrients.CHOCDF) 
+      setFat(data.hints[0].food.nutrients.FAT) 
+      setProtein(data.hints[0].food.nutrients.PROCNT) 
     })
   };
     
